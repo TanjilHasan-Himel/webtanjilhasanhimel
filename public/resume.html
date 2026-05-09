@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ATS-friendly resume of Tanjil Hasan Himel, CSE student and radio presenter with web and media experience." />
+  <title>tanjilhasan-resume</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 14mm;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: "Arial", "Helvetica", sans-serif;
+      color: #111;
+      background: #fff;
+      line-height: 1.4;
+    }
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 16px 12px 40px;
+    }
+    header {
+      border-bottom: 2px solid #111;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-size: 28px;
+      margin: 0 0 6px;
+      letter-spacing: 0.5px;
+    }
+    h2 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 20px 0 8px;
+      border-bottom: 1px solid #111;
+      padding-bottom: 4px;
+    }
+    h3 {
+      font-size: 14px;
+      margin: 0 0 4px;
+    }
+    p {
+      margin: 6px 0;
+      font-size: 12px;
+    }
+    ul {
+      margin: 6px 0 10px 18px;
+      padding: 0;
+      font-size: 12px;
+    }
+    .meta {
+      font-size: 12px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 24px;
+    }
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      font-size: 12px;
+    }
+    .tag {
+      display: inline-block;
+      border: 1px solid #111;
+      padding: 2px 6px;
+      border-radius: 999px;
+      font-size: 11px;
+    }
+    .muted {
+      color: #444;
+    }
+    .print-actions {
+      margin-top: 8px;
+      font-size: 12px;
+    }
+    .print-actions button {
+      border: 1px solid #111;
+      background: #111;
+      color: #fff;
+      padding: 6px 10px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+    }
+    @media print {
+      .print-actions {
+        display: none;
+      }
+      main {
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Tanjil Hasan Himel</h1>
+      <p class="meta">CSE Student at Varendra University | Radio Presenter (RJ) at Radio Padma</p>
+      <div class="row muted">
+        <span>Email: taanjilhasan@gmail.com</span>
+        <span>Phone: +880 1774 685310</span>
+        <span>Location: Rajshahi, Bangladesh</span>
+      </div>
+      <div class="row muted">
+        <span>LinkedIn: linkedin.com/in/tanjilhasanhimel</span>
+        <span>GitHub: github.com/TanjilHasan-Himel</span>
+      </div>
+      <div class="print-actions">
+        <button type="button" onclick="window.print()">Download PDF</button>
+        <span class="muted">Save as PDF for ATS-friendly A4 resume.</span>
+      </div>
+    </header>
+
+    <section>
+      <h2>Summary</h2>
+      <p>
+        CSE student focused on building web applications and media-driven experiences. Currently pursuing
+        B.Sc. in CSE while learning through real projects in radio, film, and software development.
+      </p>
+    </section>
+
+    <section>
+      <h2>Skills</h2>
+      <div class="grid">
+        <div>
+          <h3>Frontend</h3>
+          <div class="row">
+            <span class="tag">React.js</span>
+            <span class="tag">Redux</span>
+            <span class="tag">Tailwind CSS</span>
+            <span class="tag">Framer Motion</span>
+            <span class="tag">JavaScript (ES6+)</span>
+          </div>
+        </div>
+        <div>
+          <h3>Backend</h3>
+          <div class="row">
+            <span class="tag">Node.js</span>
+            <span class="tag">Express.js</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">REST APIs</span>
+            <span class="tag">JWT Auth</span>
+          </div>
+        </div>
+        <div>
+          <h3>Tools</h3>
+          <div class="row">
+            <span class="tag">Git</span>
+            <span class="tag">GitHub</span>
+            <span class="tag">VS Code</span>
+            <span class="tag">Postman</span>
+            <span class="tag">Vite</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Experience</h2>
+      <div>
+        <h3>Radio Presenter (RJ) — Radio Padma</h3>
+        <p class="muted">Ongoing</p>
+        <ul>
+          <li>Hosted live programs and audience engagement segments.</li>
+          <li>Coordinated on-air schedules and show planning.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Media Manager — Delupi (Film)</h3>
+        <p class="muted">Project-based</p>
+        <ul>
+          <li>Managed social media promotion for the film campaign.</li>
+          <li>Coordinated promotional assets and posting timelines.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Assistant Director (1st/2nd AD) — Music Video Production</h3>
+        <p class="muted">Project-based</p>
+        <ul>
+          <li>Learning role supporting direction and on-set coordination.</li>
+          <li>Observed workflows and helped with small production tasks.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <div>
+        <h3>B.Sc. in Computer Science & Engineering — Varendra University</h3>
+        <p class="muted">Ongoing</p>
+        <p>Major in Software Engineering & Algorithms.</p>
+      </div>
+      <div>
+        <h3>Secondary School Certificate (Science) — Natore Govt. Boys' High School</h3>
+        <p class="muted">Completed</p>
+        <p>Foundation in Science & Mathematics.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Projects</h2>
+      <div>
+        <h3>Import Export Hub — Logistics Platform</h3>
+        <p>MERN logistics platform for trade documentation and shipment tracking workflows.</p>
+        <p class="muted">Stack: MERN Stack, Tailwind, Firebase</p>
+      </div>
+      <div>
+        <h3>GamerHat — E-Commerce</h3>
+        <p>React/Redux e-commerce site with Node.js and Stripe for gaming gear sales.</p>
+        <p class="muted">Stack: React, Redux, Node.js, Stripe</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Mobile Applications</h2>
+      <div>
+        <h3>Audia Player: Music UI</h3>
+        <p>Clean, lightweight music player UI focused on sound-first listening.</p>
+        <p class="muted">Tech: Kotlin, Jetpack Compose, Room, Hilt, ExoPlayer</p>
+      </div>
+      <div>
+        <h3>SmartLib: Digital Library Ecosystem</h3>
+        <p>Cross-platform library solution with mobile app and web dashboard.</p>
+        <p class="muted">Tech: Flutter, Django, MongoDB, Python, REST API, Render</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('download') === '1') {
+      window.addEventListener('load', () => {
+        window.print();
+      });
+    }
+  </script>
+</body>
+</html>

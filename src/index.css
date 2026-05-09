@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Elegant Base Styles */
+body {
+  background-color: #F8FAFC; /* Slate-50: A rich, soft white */
+  color: #1E293B; /* Slate-800: Deep, readable text */
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* Typography Classes */
+.font-heading {
+  font-family: 'Fraunces', serif;
+}
+.font-body {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.font-display {
+  font-family: 'Fraunces', serif;
+}
+
+/* Animated Music Note Cursor */
+@keyframes musicNoteRotate {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(-15deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.music-cursor {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><text x="2" y="20" font-size="20" font-weight="bold">🎵</text></svg>') 12 12, auto;
+  animation: musicNoteRotate 0.6s ease-in-out infinite;
+}
+
+.announcement-marquee {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.announcement-marquee__track {
+  display: inline-flex;
+  align-items: center;
+  gap: 2rem;
+  animation: marquee-ltr 22s linear infinite;
+  will-change: transform;
+}
+
+.announcement-marquee__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.announcement-marquee:hover .announcement-marquee__track {
+  animation-play-state: paused;
+}
+
+.announcement-marquee__link {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.announcement-marquee__link:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+@keyframes marquee-ltr {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
