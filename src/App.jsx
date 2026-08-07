@@ -3,7 +3,7 @@ import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motio
 import {
    ArrowUpRight, Github, Linkedin, Facebook, Mail, Phone,
    Download, Globe, Radio, Code2, Mic, Film, X,
-   Cpu, Layers, Wrench, Database, Play, CheckCircle, Smartphone
+   Cpu, Layers, Wrench, Database, Play, CheckCircle, Smartphone, Bot, BookOpen
 } from 'lucide-react';
 
 // --- AUDIO HOOK ---
@@ -35,7 +35,7 @@ const useAudioHover = (audioSrc) => {
          const elapsed = Date.now() - startTime;
          const progress = Math.min(elapsed / duration, 1);
          const newVolume = startVolume + (targetVolume - startVolume) * progress;
-         
+
          volumeRef.current = newVolume;
          if (audioRef.current) audioRef.current.volume = newVolume;
 
@@ -47,7 +47,7 @@ const useAudioHover = (audioSrc) => {
 
    const handleMouseEnter = () => {
       const timeSinceLeave = Date.now() - lastLeaveTimeRef.current;
-      
+
       setIsHovering(true);
 
       if (!audioRef.current.paused) {
@@ -202,22 +202,23 @@ const experience = [
 ];
 
 const skills = {
-   frontend: ["React.js", "Redux", "Tailwind CSS", "Framer Motion", "JavaScript (ES6+)"],
-   backend: ["Node.js", "Express.js", "MongoDB", "REST APIs", "JWT Auth"],
-   tools: ["Git", "GitHub", "VS Code", "Postman", "Vite"]
+   core: ["Python", "C/C++", "OOP / Data Structures", "Networking Fundamentals"],
+   systems: ["System Architecture", "REST APIs", "Databases (SQL)", "Git / GitHub"],
+   aiAssisted: ["AI Pair Programming", "Prompt Engineering", "Cursor / AI Agents"],
+   learning: ["MERN Stack", "Flutter", "React.js"]
 };
 
 // --- NEW APP DATA ---
-const announcementText = "New version released: Audia Player v6.2.2 is live.";
+const announcementText = "New version released: Audia Player v8.0.0 is live.";
 
 const playTimeApp = {
    id: "audia",
    name: "Audia Player: Music UI",
-   version: "Latest",
+   version: "8.0.0",
    updateNote: announcementText,
    icon: "/audiaplayer/apicon.jpg",
    developer: "Tanjil Hasan Himel",
-   downloadLink: "https://github.com/TanjilHasan-Himel/playtime-musicapp/releases/download/v3.0/AudiaPlayer.apk",
+   downloadLink: "https://github.com/TanjilHasan-Himel/app/releases/download/audio/Audiaplayer.apk",
    story: "Audia Player is a clean, lightweight music player UI built to respect listeners and keep the focus on sound.",
    why: "This app stays in active development with frequent improvements and refinements.",
    features: [
@@ -242,13 +243,14 @@ const smartLibraryApp = {
    name: "SmartLib: Digital Library Ecosystem",
    shortName: "SmartLib",
    version: "v2.0",
-   updateNote: "Final Year Project • Varendra University",
+   updateNote: "Rank 1: Latest Phone • Rank 2: PC Latest • Rank 3: Super Admin",
    icon: "/SmartLib/appicon1.png",
+   demoVideoLink: "https://drive.google.com/file/d/1d0OXfZ69NlRxuiRJWvx2V-zvAr4wowIp/view",
    category: "B.Sc. Final Year Project (CSE-418)",
    developer: "Tanjil Hasan Himel (Full Stack Developer & Team Lead)",
    supervisor: "Md. Arshad Wasif (Lecturer, Dept. of CSE)",
    story: "A smart, cross-platform library solution designed to modernize campus operations. It connects a Mobile App for Students with a Responsive Web Dashboard for Librarians.",
-   problem: "At Varendra University, managing the library manually was becoming inefficient. Students faced the 'Availability Paradox'—traveling to the library only to find books out of stock, with no way to know when they would return.",
+   problem: "At many University, managing the library manually was becoming inefficient. Students faced the 'Availability Paradox'—traveling to the library only to find books out of stock, with no way to know when they would return.",
    solution: "We built a complete Digital Ecosystem that bridges the gap between physical resources and digital access.",
    features: [
       {
@@ -295,33 +297,156 @@ const appScreens = {
       "/audiaplayer/8.jpeg"
    ],
    smartlib_student: [
-      "/SmartLib/1.jpeg",
-      "/SmartLib/2.jpeg",
-      "/SmartLib/3.jpeg",
-      "/SmartLib/4.jpeg",
-      "/SmartLib/5.jpeg",
-      "/SmartLib/6.jpeg",
-      "/SmartLib/7.jpeg",
-      "/SmartLib/8.jpeg"
+      "/SmartLib/New/Phone/phone (1).png",
+      "/SmartLib/New/Phone/phone (2).png",
+      "/SmartLib/New/Phone/phone (3).png",
+      "/SmartLib/New/Phone/phone (4).png",
+      "/SmartLib/New/Phone/phone (5).png",
+      "/SmartLib/New/Phone/phone (6).png",
+      "/SmartLib/New/Phone/phone (7).png",
+      "/SmartLib/New/Phone/phone (8).png",
+      "/SmartLib/New/Phone/phone (9).png",
+      "/SmartLib/New/Phone/phone (10).png",
+      "/SmartLib/New/Phone/phone (11).png",
+      "/SmartLib/New/Phone/phone (12).png",
+      "/SmartLib/New/Phone/phone (13).png",
+      "/SmartLib/New/Phone/phone (14).png",
+      "/SmartLib/New/Phone/phone (15).png",
+      "/SmartLib/New/Phone/phone (16).png",
+      "/SmartLib/New/Phone/phone (17).png",
+      "/SmartLib/New/Phone/phone (19).png",
+      "/SmartLib/New/Phone/phone (20).png",
+      "/SmartLib/New/Phone/phone (21).png",
+      "/SmartLib/New/Phone/phone (22).png",
+      "/SmartLib/New/Phone/phone (23).png",
+      "/SmartLib/New/Phone/phone (24).png",
+      "/SmartLib/New/Phone/phone (25).png",
+      "/SmartLib/New/Phone/phone (26).png",
+      "/SmartLib/New/Phone/phone (27).png",
+      "/SmartLib/New/Phone/phone (28).png",
+      "/SmartLib/New/Phone/phone (29).png",
+      "/SmartLib/New/Phone/phone (30).png",
+      "/SmartLib/New/Phone/phone (31).png",
+      "/SmartLib/New/Phone/phone (32).png",
+      "/SmartLib/New/Phone/phone (33).png",
+      "/SmartLib/New/Phone/phone (34).png",
+      "/SmartLib/New/Phone/phone (35).png"
    ],
    smartlib_admin: [
-      "/SmartLib/AdminSS/1 (1).png",
-      "/SmartLib/AdminSS/1 (2).png",
-      "/SmartLib/AdminSS/1 (3).png",
-      "/SmartLib/AdminSS/1 (4).png",
-      "/SmartLib/AdminSS/1 (5).png",
-      "/SmartLib/AdminSS/1 (6).png",
-      "/SmartLib/AdminSS/1 (7).png",
-      "/SmartLib/AdminSS/1 (8).png",
-      "/SmartLib/AdminSS/1 (9).png",
-      "/SmartLib/AdminSS/1 (10).png",
-      "/SmartLib/AdminSS/1 (11).png",
-      "/SmartLib/AdminSS/1 (12).png"
+      "/SmartLib/New/PCs/pc (1).png",
+      "/SmartLib/New/PCs/pc (3).png",
+      "/SmartLib/New/PCs/pc (4).png",
+      "/SmartLib/New/PCs/pc (5).png",
+      "/SmartLib/New/PCs/pc (6).png",
+      "/SmartLib/New/PCs/pc (7).png",
+      "/SmartLib/New/PCs/pc (8).png",
+      "/SmartLib/New/PCs/pc (9).png",
+      "/SmartLib/New/PCs/pc (10).png",
+      "/SmartLib/New/PCs/pc (11).png",
+      "/SmartLib/New/PCs/pc (12).png",
+      "/SmartLib/New/PCs/pc (13).png",
+      "/SmartLib/New/PCs/pc (14).png"
+   ],
+   smartlib_super_admin: Array.from({ length: 17 }, (_, index) => `/SmartLib/New Super Admin like the ORGANIZATION/14 (${index + 1}).png`),
+   smartlib_older_app: [
+      "/SmartLib/Older/APP old/1.jpeg",
+      "/SmartLib/Older/APP old/2.jpeg",
+      "/SmartLib/Older/APP old/3.jpeg",
+      "/SmartLib/Older/APP old/4.jpeg",
+      "/SmartLib/Older/APP old/5.jpeg",
+      "/SmartLib/Older/APP old/6.jpeg",
+      "/SmartLib/Older/APP old/7.jpeg",
+      "/SmartLib/Older/APP old/8.jpeg",
+      "/SmartLib/Older/APP old/9.jpeg",
+      "/SmartLib/Older/APP old/10.jpeg",
+      "/SmartLib/Older/APP old/11.jpeg",
+      "/SmartLib/Older/APP old/12.jpeg",
+      "/SmartLib/Older/APP old/13.jpeg"
+   ],
+   smartlib_older_admin: [
+      "/SmartLib/Older/AdminSS/1 (1).png",
+      "/SmartLib/Older/AdminSS/1 (2).png",
+      "/SmartLib/Older/AdminSS/1 (3).png",
+      "/SmartLib/Older/AdminSS/1 (4).png",
+      "/SmartLib/Older/AdminSS/1 (5).png",
+      "/SmartLib/Older/AdminSS/1 (6).png",
+      "/SmartLib/Older/AdminSS/1 (7).png",
+      "/SmartLib/Older/AdminSS/1 (8).png",
+      "/SmartLib/Older/AdminSS/1 (9).png",
+      "/SmartLib/Older/AdminSS/1 (10).png",
+      "/SmartLib/Older/AdminSS/1 (11).png",
+      "/SmartLib/Older/AdminSS/1 (12).png"
+   ],
+   noor: [
+      "/webprojects/hajj/Site User/1 (13).png",
+      "/webprojects/hajj/Site User/1 (14).png",
+      "/webprojects/hajj/Site User/1 (15).png",
+      "/webprojects/hajj/Site User/1 (16).png",
+      "/webprojects/hajj/Site User/1 (17).png",
+      "/webprojects/hajj/Site User/1 (18).png",
+      "/webprojects/hajj/Site User/1 (19).png",
+      "/webprojects/hajj/Site User/1 (20).png",
+      "/webprojects/hajj/Site User/Screenshot 2026-05-09 223524.png",
+      "/webprojects/hajj/Site User/Screenshot 2026-05-09 223548.png",
+      "/webprojects/hajj/Admin/Screenshot 2026-05-09 223621.png"
    ]
 };
 
 const allApps = [playTimeApp, smartLibraryApp];
 const projects = [
+   {
+      id: "noor",
+      isAppLike: true,
+      name: "Noor Travels: CRM (Project Concept)",
+      category: "SaaS / CRM",
+      img: "/webprojects/hajj/Site User/1 (13).png",
+      desc: "A complete B2B SaaS platform concept for Hajj and Umrah travel agencies to manage bookings, visas, and operations securely.",
+      stack: ["Next.js", "Prisma", "Tailwind", "AI Tools"],
+      liveLink: "#",
+      repoLink: "#",
+      icon: "/webprojects/hajj/Site User/1 (13).png",
+      version: "v1.0",
+      updateNote: "Project Concept & Production Build",
+      developer: "Tanjil Hasan Himel (Logic & Architecture) + AI (Code Generation)",
+      story: "Being a final-year CSE student, I wanted to build something that actually solves a real-world problem, not just another boring to-do list app. I noticed that Hajj and Umrah travel agencies go through a crazy amount of hassle. They have to juggle complex bookings, strict visa deadlines, flights, and mountains of paperwork—mostly using messy spreadsheets or just pen and paper.\n\nI thought, \"What if I built one solid app to handle all of this in one place?\"",
+      problem: "Travel agencies were using scattered spreadsheets, resulting in missed visa deadlines, lost passenger passports, and chaotic payment tracking.",
+      solution: "A unified, white-labeled SaaS CRM specifically designed to automate the Hajj & Umrah workflow, from initial inquiry to final departure.",
+      aiCodingStory: "Building this alongside AI was honestly amazing. Instead of spending weeks fighting with missing commas or weird code errors, I spent my time thinking about the big picture—like how to connect the database properly and how to handle edge cases.\n\nI would draw out my database plan, explain the rules to Claude or Gemini to get the core code, and then use Copilot in my code editor to stitch it all together. It was a massive lesson in learning how to talk to AI. It turns out, if you give AI a really solid plan and clear rules, it can build massive, complex features incredibly fast.",
+      features: [
+         {
+            title: "Data Isolation (Multi-Tenant)",
+            desc: "Agency A can never accidentally see Agency B's customers, even though they are running on the same underlying system."
+         },
+         {
+            title: "Dynamic White-Labeling",
+            desc: "The system pulls an agency's specific logo and brand colors from the database and instantly changes the whole look of the app to match their style."
+         },
+         {
+            title: "Role-Based Access Control (RBAC)",
+            desc: "A strict security layer. The app constantly checks to make sure staff members can only see what they are supposed to. For example, a junior visa processor can't randomly click into the agency's financial settings."
+         },
+         {
+            title: "Step-by-Step Tracking",
+            desc: "A smooth flow that tracks a customer from \"just asking\" to \"booked,\" \"visa approved,\" and finally \"departed.\""
+         },
+         {
+            title: "Visa & Document Dashboard",
+            desc: "No more physical whiteboards or lost sticky notes. This is an automated screen that tracks visa deadlines and passport statuses."
+         },
+         {
+            title: "Action History (Audit Logs)",
+            desc: "Every time a staff member adds, edits, or deletes something, the app quietly logs who did it and when. It gives agency owners a safe history of everything happening in their business."
+         }
+      ],
+      techTable: [
+         { component: "Frontend Architecture", tech: "Next.js (App Router)" },
+         { component: "Database ORM", tech: "Prisma & PostgreSQL" },
+         { component: "AI Pair Programming", tech: "Gemini, Claude, GitHub Copilot" },
+         { component: "Styling & UI", tech: "Tailwind CSS & Shadcn UI" }
+      ],
+      downloadLink: "#",
+      sourceCode: "Private"
+   },
    {
       id: "01",
       name: "Import Export Hub",
@@ -447,7 +572,7 @@ const filmMedia = [
 const musicVideoMedia = [
    {
       title: "Music Video",
-      role: "A.D.",
+      role: "aspiring direction learner",
       type: "Music Video",
       link: "#",
       image: null
@@ -643,7 +768,6 @@ const Navbar = ({ currentTime }) => (
       <div className="hidden md:flex gap-8 text-xs font-bold uppercase tracking-widest items-center">
          <a href="#about" className="hover:text-gray-500 transition">About</a>
          <a href="#skills" className="hover:text-gray-500 transition">Skills</a>
-         <a href="#experience" className="hover:text-gray-500 transition">Experience</a>
          <a href="#projects" className="hover:text-gray-500 transition">Projects</a>
          <a href="#app" className="hover:text-gray-500 transition">App</a>
          <a href="#media" className="hover:text-gray-500 transition">Media</a>
@@ -753,9 +877,17 @@ const AppDetailModal = ({ isOpen, app, onClose }) => {
 
    const studentScreens = app?.id === "smartlib" ? appScreens.smartlib_student : (appScreens[app?.id] || []);
    const adminScreens = app?.id === "smartlib" ? appScreens.smartlib_admin : [];
+   const superAdminScreens = app?.id === "smartlib" ? appScreens.smartlib_super_admin : [];
+   const olderAppScreens = app?.id === "smartlib" ? appScreens.smartlib_older_app : [];
+   const olderAdminScreens = app?.id === "smartlib" ? appScreens.smartlib_older_admin : [];
+   const noorScreens = app?.id === "noor" ? appScreens.noor : [];
    const [currentSlide, setCurrentSlide] = useState(0);
    const [studentCurrentSlide, setStudentCurrentSlide] = useState(0);
    const [adminCurrentSlide, setAdminCurrentSlide] = useState(0);
+   const [superAdminCurrentSlide, setSuperAdminCurrentSlide] = useState(0);
+   const [olderAppCurrentSlide, setOlderAppCurrentSlide] = useState(0);
+   const [olderAdminCurrentSlide, setOlderAdminCurrentSlide] = useState(0);
+   const [noorCurrentSlide, setNoorCurrentSlide] = useState(0);
 
    const handlePrev = () => {
       if (app?.id === "smartlib") {
@@ -764,7 +896,7 @@ const AppDetailModal = ({ isOpen, app, onClose }) => {
          setCurrentSlide((p) => (p - 1 + studentScreens.length) % studentScreens.length);
       }
    };
-   
+
    const handleNext = () => {
       if (app?.id === "smartlib") {
          setStudentCurrentSlide((p) => (p + 1) % studentScreens.length);
@@ -830,6 +962,12 @@ const AppDetailModal = ({ isOpen, app, onClose }) => {
                               <p className="text-sm text-gray-700 leading-relaxed">{app.solution}</p>
                            </>
                         )}
+                        {app.aiCodingStory && (
+                           <>
+                              <h4 className="font-bold text-xs uppercase mt-6 mb-2 text-black border-l-4 border-black pl-2">What It Was Like Coding with AI</h4>
+                              <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-wrap bg-gray-50 p-4 border border-gray-200">{app.aiCodingStory}</p>
+                           </>
+                        )}
                      </div>
 
                      {/* Features */}
@@ -879,7 +1017,7 @@ const AppDetailModal = ({ isOpen, app, onClose }) => {
                      {/* Screenshots - Student App */}
                      {app.id === "smartlib" && studentScreens.length > 0 && (
                         <div>
-                           <h3 className="font-bold uppercase text-sm mb-3 text-black">📱 Student Mobile App</h3>
+                           <h3 className="font-bold uppercase text-sm mb-3 text-black">📱 Latest Phone</h3>
                            <p className="text-xs text-gray-600 mb-3">Book search, availability checking, and QR-based borrowing on mobile</p>
                            <div className="space-y-3">
                               <div className="border-2 border-black bg-gray-50 relative group overflow-hidden">
@@ -919,16 +1057,16 @@ const AppDetailModal = ({ isOpen, app, onClose }) => {
                         </div>
                      )}
 
-                     {/* Screenshots - Admin Panel */}
+                     {/* Screenshots - PC Latest */}
                      {app.id === "smartlib" && adminScreens.length > 0 && (
                         <div>
-                           <h3 className="font-bold uppercase text-sm mb-3 text-black">💻 Admin Dashboard</h3>
+                           <h3 className="font-bold uppercase text-sm mb-3 text-black">💻 PC Latest</h3>
                            <p className="text-xs text-gray-600 mb-3">Librarian control panel for inventory, fines, and real-time management</p>
                            <div className="space-y-3">
                               <div className="border-2 border-black bg-gray-50 relative group overflow-hidden">
                                  <img
                                     src={adminScreens[adminCurrentSlide]}
-                                    alt={`Admin Screen ${adminCurrentSlide + 1}`}
+                                    alt={`PC Latest Screen ${adminCurrentSlide + 1}`}
                                     className="w-full h-auto max-h-[500px] object-contain"
                                  />
                               </div>
@@ -937,10 +1075,10 @@ const AppDetailModal = ({ isOpen, app, onClose }) => {
                                  <span className="flex items-center justify-center px-4 border border-black font-mono text-xs text-black">{adminCurrentSlide + 1}/{adminScreens.length}</span>
                                  <button onClick={() => setAdminCurrentSlide(Math.min(adminScreens.length - 1, adminCurrentSlide + 1))} disabled={adminCurrentSlide === adminScreens.length - 1} className="flex-1 border border-black py-2 font-bold uppercase hover:bg-black hover:text-white transition disabled:opacity-50 text-black">Next</button>
                               </div>
-                              {/* Admin Panel Thumbnails with Hover Preview */}
+                              {/* PC Latest Thumbnails */}
                               <div className="grid grid-cols-6 gap-1">
                                  {adminScreens.map((src, idx) => {
-                                    const { previewProps, previewPortal } = CursorPreview({ image: src, title: `Admin Screen ${idx + 1}` });
+                                    const { previewProps, previewPortal } = CursorPreview({ image: src, title: `PC Latest Screen ${idx + 1}` });
                                     return (
                                        <div key={idx}>
                                           {previewPortal}
@@ -952,13 +1090,143 @@ const AppDetailModal = ({ isOpen, app, onClose }) => {
                                              whileHover={{ scale: 1.1 }}
                                           >
                                              <ParticleEffect isActive={false} />
-                                             <img src={src} alt={`Admin Thumb ${idx + 1}`} className="w-full h-full object-cover" />
+                                             <img src={src} alt={`PC Latest Thumb ${idx + 1}`} className="w-full h-full object-cover" />
                                           </motion.button>
                                        </div>
                                     );
                                  })}
                               </div>
                            </div>
+                        </div>
+                     )}
+
+                     {/* Screenshots - Latest Update */}
+                     {app.id === "smartlib" && superAdminScreens.length > 0 && (
+                        <div>
+                           <h3 className="font-bold uppercase text-sm mb-3 text-black">🛡️ Latest Update</h3>
+                           <p className="text-xs text-gray-600 mb-3">Latest organization-level screens and update flow for the SmartLib super admin area</p>
+                           <div className="space-y-3">
+                              <div className="border-2 border-black bg-gray-50 relative group overflow-hidden">
+                                 <img
+                                    src={superAdminScreens[superAdminCurrentSlide]}
+                                    alt={`Super Admin Screen ${superAdminCurrentSlide + 1}`}
+                                    className="w-full h-auto max-h-[500px] object-contain"
+                                 />
+                              </div>
+                              <div className="flex gap-2">
+                                 <button onClick={() => setSuperAdminCurrentSlide(Math.max(0, superAdminCurrentSlide - 1))} disabled={superAdminCurrentSlide === 0} className="flex-1 border border-black py-2 font-bold uppercase hover:bg-black hover:text-white transition disabled:opacity-50 text-black">Prev</button>
+                                 <span className="flex items-center justify-center px-4 border border-black font-mono text-xs text-black">{superAdminCurrentSlide + 1}/{superAdminScreens.length}</span>
+                                 <button onClick={() => setSuperAdminCurrentSlide(Math.min(superAdminScreens.length - 1, superAdminCurrentSlide + 1))} disabled={superAdminCurrentSlide === superAdminScreens.length - 1} className="flex-1 border border-black py-2 font-bold uppercase hover:bg-black hover:text-white transition disabled:opacity-50 text-black">Next</button>
+                              </div>
+                              <div className="grid grid-cols-6 gap-1 md:grid-cols-8">
+                                 {superAdminScreens.map((src, idx) => {
+                                    const { previewProps, previewPortal } = CursorPreview({ image: src, title: `Super Admin Screen ${idx + 1}` });
+                                    return (
+                                       <div key={idx}>
+                                          {previewPortal}
+                                          <motion.button
+                                             type="button"
+                                             {...previewProps}
+                                             onClick={() => setSuperAdminCurrentSlide(idx)}
+                                             className={`aspect-square border-2 ${idx === superAdminCurrentSlide ? "border-black" : "border-gray-300"} overflow-hidden relative group cursor-pointer bg-gray-50`}
+                                             whileHover={{ scale: 1.1 }}
+                                          >
+                                             <ParticleEffect isActive={false} />
+                                             <img src={src} alt={`Super Admin Thumb ${idx + 1}`} className="w-full h-full object-cover" />
+                                          </motion.button>
+                                       </div>
+                                    );
+                                 })}
+                              </div>
+                           </div>
+                        </div>
+                     )}
+
+                     {/* Screenshots - Older Version */}
+                     {app.id === "smartlib" && (olderAppScreens.length > 0 || olderAdminScreens.length > 0) && (
+                        <div>
+                           <h3 className="font-bold uppercase text-sm mb-3 text-black">🕰️ Older Version</h3>
+                           <p className="text-xs text-gray-600 mb-3">Initial start of the SmartLib build, kept here as the earlier version</p>
+
+                           {olderAppScreens.length > 0 && (
+                              <div className="mb-8">
+                                 <h4 className="font-bold uppercase text-xs mb-3 text-black">Initial Start - App Old</h4>
+                                 <div className="space-y-3">
+                                    <div className="border-2 border-black bg-gray-50 relative group overflow-hidden">
+                                       <img
+                                          src={olderAppScreens[olderAppCurrentSlide]}
+                                          alt={`Older App Screen ${olderAppCurrentSlide + 1}`}
+                                          className="w-full h-auto max-h-[500px] object-contain"
+                                       />
+                                    </div>
+                                    <div className="flex gap-2">
+                                       <button onClick={() => setOlderAppCurrentSlide(Math.max(0, olderAppCurrentSlide - 1))} disabled={olderAppCurrentSlide === 0} className="flex-1 border border-black py-2 font-bold uppercase hover:bg-black hover:text-white transition disabled:opacity-50 text-black">Prev</button>
+                                       <span className="flex items-center justify-center px-4 border border-black font-mono text-xs text-black">{olderAppCurrentSlide + 1}/{olderAppScreens.length}</span>
+                                       <button onClick={() => setOlderAppCurrentSlide(Math.min(olderAppScreens.length - 1, olderAppCurrentSlide + 1))} disabled={olderAppCurrentSlide === olderAppScreens.length - 1} className="flex-1 border border-black py-2 font-bold uppercase hover:bg-black hover:text-white transition disabled:opacity-50 text-black">Next</button>
+                                    </div>
+                                    <div className="grid grid-cols-6 gap-1 md:grid-cols-8">
+                                       {olderAppScreens.map((src, idx) => {
+                                          const { previewProps, previewPortal } = CursorPreview({ image: src, title: `Older App Screen ${idx + 1}` });
+                                          return (
+                                             <div key={idx}>
+                                                {previewPortal}
+                                                <motion.button
+                                                   type="button"
+                                                   {...previewProps}
+                                                   onClick={() => setOlderAppCurrentSlide(idx)}
+                                                   className={`aspect-square border-2 ${idx === olderAppCurrentSlide ? "border-black" : "border-gray-300"} overflow-hidden relative group cursor-pointer bg-gray-50`}
+                                                   whileHover={{ scale: 1.1 }}
+                                                >
+                                                   <ParticleEffect isActive={false} />
+                                                   <img src={src} alt={`Older App Thumb ${idx + 1}`} className="w-full h-full object-cover" />
+                                                </motion.button>
+                                             </div>
+                                          );
+                                       })}
+                                    </div>
+                                 </div>
+                              </div>
+                           )}
+
+                           {olderAdminScreens.length > 0 && (
+                              <div>
+                                 <h4 className="font-bold uppercase text-xs mb-3 text-black">Initial Start - AdminSS</h4>
+                                 <div className="space-y-3">
+                                    <div className="border-2 border-black bg-gray-50 relative group overflow-hidden">
+                                       <img
+                                          src={olderAdminScreens[olderAdminCurrentSlide]}
+                                          alt={`Older Admin Screen ${olderAdminCurrentSlide + 1}`}
+                                          className="w-full h-auto max-h-[500px] object-contain"
+                                       />
+                                    </div>
+                                    <div className="flex gap-2">
+                                       <button onClick={() => setOlderAdminCurrentSlide(Math.max(0, olderAdminCurrentSlide - 1))} disabled={olderAdminCurrentSlide === 0} className="flex-1 border border-black py-2 font-bold uppercase hover:bg-black hover:text-white transition disabled:opacity-50 text-black">Prev</button>
+                                       <span className="flex items-center justify-center px-4 border border-black font-mono text-xs text-black">{olderAdminCurrentSlide + 1}/{olderAdminScreens.length}</span>
+                                       <button onClick={() => setOlderAdminCurrentSlide(Math.min(olderAdminScreens.length - 1, olderAdminCurrentSlide + 1))} disabled={olderAdminCurrentSlide === olderAdminScreens.length - 1} className="flex-1 border border-black py-2 font-bold uppercase hover:bg-black hover:text-white transition disabled:opacity-50 text-black">Next</button>
+                                    </div>
+                                    <div className="grid grid-cols-6 gap-1 md:grid-cols-8">
+                                       {olderAdminScreens.map((src, idx) => {
+                                          const { previewProps, previewPortal } = CursorPreview({ image: src, title: `Older Admin Screen ${idx + 1}` });
+                                          return (
+                                             <div key={idx}>
+                                                {previewPortal}
+                                                <motion.button
+                                                   type="button"
+                                                   {...previewProps}
+                                                   onClick={() => setOlderAdminCurrentSlide(idx)}
+                                                   className={`aspect-square border-2 ${idx === olderAdminCurrentSlide ? "border-black" : "border-gray-300"} overflow-hidden relative group cursor-pointer bg-gray-50`}
+                                                   whileHover={{ scale: 1.1 }}
+                                                >
+                                                   <ParticleEffect isActive={false} />
+                                                   <img src={src} alt={`Older Admin Thumb ${idx + 1}`} className="w-full h-full object-cover" />
+                                                </motion.button>
+                                             </div>
+                                          );
+                                       })}
+                                    </div>
+                                 </div>
+                              </div>
+                           )}
                         </div>
                      )}
 
@@ -995,6 +1263,53 @@ const AppDetailModal = ({ isOpen, app, onClose }) => {
                                              whileHover={{ scale: 1.1 }}
                                           >
                                              <img src={src} alt={`Thumb ${idx}`} className="w-full h-full object-cover" />
+                                          </motion.button>
+                                       </div>
+                                    );
+                                 })}
+                              </div>
+                           </div>
+                        </div>
+                     )}
+
+                     {/* Screenshots - Noor Travels */}
+                     {app.id === "noor" && noorScreens.length > 0 && (
+                        <div>
+                           <h3 className="font-bold uppercase text-sm mb-3 text-black">📸 Project Screenshots</h3>
+                           <div className="space-y-3">
+                              <div className="border-2 border-black bg-gray-50 relative group overflow-hidden">
+                                 <img
+                                    src={noorScreens[noorCurrentSlide]}
+                                    alt={`Noor Screen ${noorCurrentSlide + 1}`}
+                                    className="w-full h-auto max-h-[500px] object-contain"
+                                 />
+                                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-30 transform -rotate-12">
+                                    <span className="text-4xl md:text-6xl font-black uppercase text-gray-800 drop-shadow-md tracking-widest text-center whitespace-nowrap">Tanjil hasan Project</span>
+                                 </div>
+                              </div>
+                              <div className="flex gap-2">
+                                 <button onClick={() => setNoorCurrentSlide(Math.max(0, noorCurrentSlide - 1))} disabled={noorCurrentSlide === 0} className="flex-1 border border-black py-2 font-bold uppercase hover:bg-black hover:text-white transition disabled:opacity-50 text-black">Prev</button>
+                                 <span className="flex items-center justify-center px-4 border border-black font-mono text-xs text-black">{noorCurrentSlide + 1}/{noorScreens.length}</span>
+                                 <button onClick={() => setNoorCurrentSlide(Math.min(noorScreens.length - 1, noorCurrentSlide + 1))} disabled={noorCurrentSlide === noorScreens.length - 1} className="flex-1 border border-black py-2 font-bold uppercase hover:bg-black hover:text-white transition disabled:opacity-50 text-black">Next</button>
+                              </div>
+                              {/* Thumbnails */}
+                              <div className="grid grid-cols-6 md:grid-cols-8 gap-1">
+                                 {noorScreens.map((src, idx) => {
+                                    const { previewProps, previewPortal } = CursorPreview({ image: src, title: `Screen ${idx + 1}` });
+                                    return (
+                                       <div key={idx}>
+                                          {previewPortal}
+                                          <motion.button
+                                             type="button"
+                                             {...previewProps}
+                                             onClick={() => setNoorCurrentSlide(idx)}
+                                             className={`aspect-square border-2 ${idx === noorCurrentSlide ? "border-black" : "border-gray-300"} overflow-hidden relative group cursor-pointer bg-gray-50`}
+                                             whileHover={{ scale: 1.1 }}
+                                          >
+                                             <img src={src} alt={`Thumb ${idx + 1}`} className="w-full h-full object-cover" />
+                                             <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-50 transform -rotate-45">
+                                                <span className="text-[6px] md:text-[8px] font-black uppercase text-black drop-shadow-sm whitespace-nowrap">Tanjil hasan</span>
+                                             </div>
                                           </motion.button>
                                        </div>
                                     );
@@ -1190,39 +1505,17 @@ function App() {
             {/* SKILLS SECTION */}
             <section id="skills">
                <SectionTitle num="03" title="Technical Proficiency" />
-               <div className="grid md:grid-cols-3 gap-6">
-                  <SkillCard title="Frontend" icon={Layers} items={skills.frontend} />
-                  <SkillCard title="Backend" icon={Database} items={skills.backend} />
-                  <SkillCard title="Tools" icon={Wrench} items={skills.tools} />
-               </div>
-            </section>
-
-            {/* EXPERIENCE SECTION */}
-            <section id="experience" className="pt-12">
-               <SectionTitle num="04" title="Professional Experience" />
-               <div className="space-y-6">
-                  {experience.map((role, i) => (
-                     <div key={i} className="pl-4 border-l-2 border-black group hover:bg-gray-50 transition p-3">
-                        <div className="flex items-start justify-between gap-4">
-                           <div>
-                              <h4 className="font-bold text-lg">{role.role}</h4>
-                              <p className="text-sm font-medium">{role.org}</p>
-                           </div>
-                           <span className="text-xs font-mono text-gray-500">{role.time}</span>
-                        </div>
-                        <ul className="mt-2 text-xs text-gray-600 space-y-1">
-                           {role.highlights.map((item, idx) => (
-                              <li key={idx}>• {item}</li>
-                           ))}
-                        </ul>
-                     </div>
-                  ))}
+               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <SkillCard title="Core CS" icon={Code2} items={skills.core} />
+                  <SkillCard title="Systems" icon={Database} items={skills.systems} />
+                  <SkillCard title="AI-Assisted" icon={Bot} items={skills.aiAssisted} />
+                  <SkillCard title="Learning" icon={BookOpen} items={skills.learning} />
                </div>
             </section>
 
             {/* PROJECTS SECTION */}
             <section id="projects">
-               <SectionTitle num="05" title="Projects" />
+               <SectionTitle num="04" title="Projects" />
                <div className="grid md:grid-cols-3 gap-6">
                   {projects.map((project) => (
                      <div key={project.id} className="group border border-black p-4 bg-white hover:bg-gray-50 transition flex flex-col h-full">
@@ -1262,7 +1555,7 @@ function App() {
 
             {/* NEW MOBILE APP SECTION */}
             <section id="app">
-               <SectionTitle num="06" title="Mobile Applications" />
+               <SectionTitle num="05" title="Mobile Applications" />
                <div className="grid md:grid-cols-2 gap-6">
                   {allApps.map((app) => {
                      const audioControl = app.id === "audia" ? audiaAudioControl : {};
@@ -1319,6 +1612,17 @@ function App() {
                               ))}
                               {app.stack.length > 3 && <span className="text-xs font-mono px-2 py-1 text-gray-600">+{app.stack.length - 3}</span>}
                            </div>
+                           {app.id === "smartlib" && app.demoVideoLink && (
+                              <a
+                                 href={app.demoVideoLink}
+                                 target="_blank"
+                                 rel="noreferrer"
+                                 onClick={(event) => event.stopPropagation()}
+                                 className="mt-4 inline-flex items-center gap-2 border-2 border-black px-4 py-2 text-xs font-bold uppercase hover:bg-black hover:text-white transition"
+                              >
+                                 <ArrowUpRight size={14} /> Project Demo Video
+                              </a>
+                           )}
                            {app.id === "audia" && app.downloadLink !== "#" && (
                               <a
                                  href={app.downloadLink}
@@ -1338,13 +1642,26 @@ function App() {
 
             {/* MEDIA SECTION (Split Layout) */}
             <section id="media">
-               <SectionTitle num="07" title="Media & Broadcast" />
+               <SectionTitle num="06" title="Media & Broadcast" />
 
                <div className="grid md:grid-cols-2 gap-8">
 
                   {/* 1. RADIO SECTION */}
-                  <div className="border border-black p-6 bg-white">
-                     <div className="flex items-center gap-2 mb-6 border-b border-black pb-2">
+                  <div className="border border-black p-6 bg-white relative overflow-hidden group">
+                     {/* Radio waves top */}
+                     <div className="absolute top-0 left-0 w-full h-4 bg-black flex items-end justify-around px-1 gap-[2px]">
+                        {[20, 60, 40, 80, 50, 90, 70, 40, 100, 60, 30, 80, 50, 90, 70, 40, 80, 60, 100, 40].map((h, i) => (
+                           <div key={i} className="flex-1 bg-white rounded-t-sm" style={{ height: `${h}%` }} />
+                        ))}
+                     </div>
+                     {/* Radio waves bottom */}
+                     <div className="absolute bottom-0 left-0 w-full h-4 bg-black flex items-start justify-around px-1 gap-[2px]">
+                        {[40, 100, 60, 80, 40, 70, 90, 50, 80, 30, 60, 100, 40, 70, 90, 50, 80, 40, 60, 20].map((h, i) => (
+                           <div key={i} className="flex-1 bg-white rounded-b-sm" style={{ height: `${h}%` }} />
+                        ))}
+                     </div>
+
+                     <div className="flex items-center gap-2 mt-4 mb-6 border-b border-black pb-2">
                         <Mic size={20} />
                         <h3 className="font-bold uppercase text-lg">Radio Broadcasting</h3>
                      </div>
@@ -1356,12 +1673,19 @@ function App() {
                   </div>
 
                   {/* 2. FILM & MUSIC VIDEO SECTION */}
-                  <div className="border border-black p-6 bg-white">
-                     <div className="flex items-center gap-2 mb-6 border-b border-black pb-2">
-                        <Film size={20} />
-                        <h3 className="font-bold uppercase text-lg">Film & Music</h3>
+                  <div className="border border-black p-6 bg-white relative overflow-hidden group">
+                     <div className="absolute top-0 left-0 w-full h-3 bg-black flex justify-around items-center px-1">
+                        {[...Array(20)].map((_, i) => <div key={i} className="w-1.5 h-1.5 bg-white rounded-sm" />)}
                      </div>
-                     <div className="space-y-3">
+                     <div className="absolute bottom-0 left-0 w-full h-3 bg-black flex justify-around items-center px-1">
+                        {[...Array(20)].map((_, i) => <div key={i} className="w-1.5 h-1.5 bg-white rounded-sm" />)}
+                     </div>
+
+                     <div className="flex items-center gap-2 mt-4 mb-2 border-b border-black pb-2">
+                        <Film size={20} />
+                        <h3 className="font-bold uppercase text-lg">Creative Direction</h3>
+                     </div>
+                     <div className="space-y-3 relative z-10 mt-2">
                         {filmMedia.map((job, i) => (
                            <a key={i} href={job.link} target="_blank" className="flex items-center justify-between p-3 bg-gray-50 hover:bg-black hover:text-white transition group border border-gray-200">
                               <div>
@@ -1406,16 +1730,19 @@ function App() {
 
          {/* PROJECT MODAL */}
          <AnimatePresence>
-            {selectedProject && (
+            {selectedProject && !selectedProject.isAppLike && (
                <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
             )}
          </AnimatePresence>
 
          {/* APP DETAIL MODAL */}
          <AppDetailModal
-            isOpen={!!selectedApp}
-            app={selectedApp}
-            onClose={() => setSelectedApp(null)}
+            isOpen={!!selectedApp || (!!selectedProject && selectedProject.isAppLike)}
+            app={selectedApp || (selectedProject?.isAppLike ? selectedProject : null)}
+            onClose={() => {
+               setSelectedApp(null);
+               if (selectedProject?.isAppLike) setSelectedProject(null);
+            }}
          />
 
          <AppScreenModal
