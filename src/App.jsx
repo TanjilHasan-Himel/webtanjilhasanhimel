@@ -250,7 +250,7 @@ const smartLibraryApp = {
    developer: "Tanjil Hasan Himel (Full Stack Developer & Team Lead)",
    supervisor: "Md. Arshad Wasif (Lecturer, Dept. of CSE)",
    story: "A smart, cross-platform library solution designed to modernize campus operations. It connects a Mobile App for Students with a Responsive Web Dashboard for Librarians.",
-   problem: "At many University, managing the library manually was becoming inefficient. Students faced the 'Availability Paradox'—traveling to the library only to find books out of stock, with no way to know when they would return.",
+   problem: "At many universities, managing the library manually was becoming inefficient. Students faced the 'Availability Paradox'—traveling to the library only to find books out of stock, with no way to know when they would return.",
    solution: "We built a complete Digital Ecosystem that bridges the gap between physical resources and digital access.",
    features: [
       {
