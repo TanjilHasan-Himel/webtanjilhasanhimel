@@ -245,7 +245,7 @@ const smartLibraryApp = {
    version: "v2.0",
    updateNote: "Rank 1: Latest Phone • Rank 2: PC Latest • Rank 3: Super Admin",
    icon: "/SmartLib/appicon1.png",
-   demoVideoLink: "https://drive.google.com/file/d/1d0OXfZ69NlRxuiRJWvx2V-zvAr4wowIp/view",
+   demoVideoLink: "https://www.youtube.com/watch?v=SxjPciMqh5Y&t=816s",
    category: "B.Sc. Final Year Project (CSE-418)",
    developer: "Tanjil Hasan Himel (Full Stack Developer & Team Lead)",
    supervisor: "Md. Arshad Wasif (Lecturer, Dept. of CSE)",
@@ -394,6 +394,50 @@ const appScreens = {
 
 const allApps = [playTimeApp, smartLibraryApp];
 const projects = [
+   {
+      id: "tdoublehfm",
+      isAppLike: true,
+      name: "T Double H FM — Autonomous Radio Station",
+      category: "Broadcasting Web App",
+      img: "/webprojects/tdoubleh/desk.png",
+      desc: "A 24/7 autonomous internet radio station built from scratch with zero budget, featuring an AI-assisted serverless scheduling engine and live override capabilities.",
+      stack: ["Next.js", "TypeScript", "Tailwind", "Icecast", "Cloudflare"],
+      liveLink: "https://tdoublehfm.vercel.app/",
+      repoLink: "#",
+      icon: "/webprojects/tdoubleh/desk.png",
+      version: "v1.0",
+      updateNote: "Live Broadcasting & Scheduling Engine",
+      developer: "Tanjil Hasan Himel (Architect) + AI (Developer)",
+      story: "As a Computer Science and Engineering (CSE) student and a program presenter/RJ at Radio Padma, I always lived between two worlds: the technical logic of code and the creative flow of audio broadcasting.\n\nIf someone wants to launch an online radio station today, there are plenty of expensive, plug-and-play corporate platforms out there. But they come with heavy price tags, rigid constraints, and lack the personal control I wanted. I didn’t want a rented box—I wanted something I truly owned. Armed with just my everyday laptop, limited resources, and zero budget for expensive commercial servers, I decided to build my own 24/7 internet radio station from scratch: T Double H FM.",
+      problem: "Expensive corporate automation platforms lack flexibility and require a dedicated broadcast engineering team.",
+      solution: "A custom serverless backend and time-based scheduling engine, alongside a live override mechanism for spontaneous on-air sessions.",
+      aiCodingStory: "Flying solo, I stepped into the role of the System Architect and Product Manager, partnering with an AI Coding Agent as my developer.\n\nI designed the core system logic—figuring out how to handle browser security blocks (CORS and CSP), time-zone calculations, and automated scheduling—while directing the AI to write, structure, and deploy the code. This project is a true testament to modern AI-Assisted Development, proving what a single creator can achieve with clear system thinking, prompt engineering, and resourcefulness instead of massive corporate funding.",
+      features: [
+         {
+            title: "Smart Next.js Backend",
+            desc: "Engineered a secure, serverless backend schedule engine. It manages 24/7 autonomous time-based and day-based programming without exposing raw streaming links on the frontend."
+         },
+         {
+            title: "The 'Live' Override",
+            desc: "The hardest challenge was figuring out how to interrupt the automated stream when I want to speak on-air. The moment I go live from my studio, the auto-schedule instantly pauses, and a glowing '🔴 ON AIR' badge lights up."
+         },
+         {
+            title: "Jingle Insertion Engine",
+            desc: "Designed fallback mechanisms and top-of-the-hour jingle engines to ensure zero dead-air moments."
+         },
+         {
+            title: "The Studio Node",
+            desc: "Turned my personal laptop into a live streaming node using Icecast & Cloudflare Tunnels."
+         }
+      ],
+      techTable: [
+         { component: "AI-Assisted Dev", tech: "Next.js, TypeScript, Tailwind CSS, Web Audio API" },
+         { component: "Broadcasting Config", tech: "Icecast, Cloudflare Tunnels" },
+         { component: "System Architecture", tech: "Serverless API Routes & Custom Logic" }
+      ],
+      downloadLink: "#",
+      sourceCode: "Private"
+   },
    {
       id: "noor",
       isAppLike: true,
@@ -1359,12 +1403,20 @@ function App() {
    const marqueeItems = Array.from({ length: 4 });
    const formatNow = (date) => date.toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" });
    const [currentTime, setCurrentTime] = useState(() => formatNow(new Date()));
+   const [showStickyBottom, setShowStickyBottom] = useState(false);
 
    useEffect(() => {
       const updateTime = () => setCurrentTime(formatNow(new Date()));
       updateTime();
       const intervalId = setInterval(updateTime, 60000);
-      return () => clearInterval(intervalId);
+
+      const handleScroll = () => setShowStickyBottom(window.scrollY > 300);
+      window.addEventListener("scroll", handleScroll);
+
+      return () => {
+         clearInterval(intervalId);
+         window.removeEventListener("scroll", handleScroll);
+      };
    }, []);
 
    const handleDownload = () => {
@@ -1410,19 +1462,32 @@ function App() {
                   {marqueeItems.map((_, index) => (
                      <span
                         key={`announcement-${index}`}
-                        className="announcement-marquee__item"
-                        aria-hidden={index > 0}
+                        className="announcement-marquee__item !gap-0 rounded overflow-hidden mx-4"
                      >
-                        {announcementText}
-                        <span className="mx-3">|</span>
-                        <a
-                           href={playTimeApp.downloadLink}
-                           target="_blank"
-                           rel="noreferrer"
-                           className="announcement-marquee__link"
-                        >
-                           Download APK
-                        </a>
+                        <span className="flex items-center gap-2 bg-white/10 text-white px-4 py-1.5 border-r border-white/20">
+                           {announcementText}
+                           <span className="text-gray-500">|</span>
+                           <a
+                              href={playTimeApp.downloadLink}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="announcement-marquee__link hover:bg-white hover:text-black transition"
+                           >
+                              Download Audia Player
+                           </a>
+                        </span>
+                        <span className="flex items-center gap-2 bg-red-950 text-red-100 px-4 py-1.5">
+                           T Double H FM — Autonomous Radio Station
+                           <span className="text-red-800">|</span>
+                           <a
+                              href="https://tdoublehfm.vercel.app/"
+                              target="_blank"
+                              rel="noreferrer"
+                              className="announcement-marquee__link !border-red-500 !bg-red-600 !text-white hover:!bg-red-500 animate-pulse px-2 py-0.5 rounded"
+                           >
+                              🔴 ONAIR
+                           </a>
+                        </span>
                      </span>
                   ))}
                </div>
@@ -1727,6 +1792,35 @@ function App() {
             </section>
 
          </main>
+
+         {/* STICKY BOTTOM ACTION BAR */}
+         <AnimatePresence>
+            {showStickyBottom && (
+               <motion.div
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 50 }}
+                  className="fixed bottom-6 left-0 right-0 mx-auto w-max z-[90] flex items-center gap-4 bg-white/90 backdrop-blur-md p-2 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-full"
+               >
+                  <a
+                     href={playTimeApp.downloadLink}
+                     target="_blank"
+                     rel="noreferrer"
+                     className="px-4 md:px-6 py-2 bg-black text-white text-[10px] md:text-xs font-bold uppercase rounded-full hover:bg-gray-800 transition flex items-center gap-2"
+                  >
+                     <Download size={14} /> Download Audia Player
+                  </a>
+                  <a
+                     href="https://tdoublehfm.vercel.app/"
+                     target="_blank"
+                     rel="noreferrer"
+                     className="px-4 md:px-6 py-2 bg-red-600 text-white text-[10px] md:text-xs font-bold uppercase rounded-full hover:bg-red-700 transition flex items-center gap-2 animate-pulse"
+                  >
+                     <Radio size={14} /> Live TDOUBLEH FM
+                  </a>
+               </motion.div>
+            )}
+         </AnimatePresence>
 
          {/* PROJECT MODAL */}
          <AnimatePresence>
