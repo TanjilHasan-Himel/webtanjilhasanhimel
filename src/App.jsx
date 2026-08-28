@@ -203,9 +203,10 @@ const experience = [
 
 const skills = {
    core: ["Python", "C/C++", "OOP / Data Structures", "Networking Fundamentals"],
-   systems: ["System Architecture", "REST APIs", "Databases (SQL)", "Git / GitHub"],
+   systems: ["System Architecture", "REST APIs", "Databases (SQL, MongoDB)", "Git / GitHub"],
    aiAssisted: ["AI Pair Programming", "Prompt Engineering", "Cursor / AI Agents"],
-   learning: ["MERN Stack", "Flutter", "React.js"]
+   learning: ["MERN Stack", "Flutter", "React.js"],
+   tools: ["VS Code", "PyCharm", "Antigravity IDE", "LaTeX"]
 };
 
 // --- NEW APP DATA ---
@@ -216,9 +217,9 @@ const playTimeApp = {
    name: "Audia Player: Music UI",
    version: "8.0.0",
    updateNote: announcementText,
-   icon: "/audiaplayer/apicon.jpg",
+   icon: "/audiaplayer/audia_player_logo.png",
    developer: "Tanjil Hasan Himel",
-   downloadLink: "https://github.com/TanjilHasan-Himel/app/releases/download/audio/Audiaplayer.apk",
+   downloadLink: "https://github.com/TanjilHasan-Himel/app/releases/download/audio/Audia_player_8.0.0.apk",
    story: "Audia Player is a clean, lightweight music player UI built to respect listeners and keep the focus on sound.",
    why: "This app stays in active development with frequent improvements and refinements.",
    features: [
@@ -249,7 +250,7 @@ const smartLibraryApp = {
    category: "B.Sc. Final Year Project (CSE-418)",
    developer: "Tanjil Hasan Himel (Full Stack Developer & Team Lead)",
    supervisor: "Md. Arshad Wasif (Lecturer, Dept. of CSE)",
-   story: "A smart, cross-platform library solution designed to modernize campus operations. It connects a Mobile App for Students with a Responsive Web Dashboard for Librarians.",
+   story: "A smart, cross-platform, multi-tenant library solution designed to modernize campus operations. It connects a Mobile App for Students with a Responsive Web Dashboard for Librarians.",
    problem: "At many universities, managing the library manually was becoming inefficient. Students faced the 'Availability Paradox'—traveling to the library only to find books out of stock, with no way to know when they would return.",
    solution: "We built a complete Digital Ecosystem that bridges the gap between physical resources and digital access.",
    features: [
@@ -268,6 +269,10 @@ const smartLibraryApp = {
       {
          title: "Real-Time Management",
          desc: "Track issued books, manage student fines, and update inventory instantly from Desktop, Tablet, or Mobile."
+      },
+      {
+         title: "Multi-Tenant Architecture",
+         desc: "Built to support multiple departments or branches independently on a single centralized system with complete data isolation."
       }
    ],
    stack: ["Flutter", "Django", "MongoDB", "Python", "REST API", "Render"],
@@ -389,6 +394,43 @@ const appScreens = {
       "/webprojects/hajj/Site User/Screenshot 2026-05-09 223524.png",
       "/webprojects/hajj/Site User/Screenshot 2026-05-09 223548.png",
       "/webprojects/hajj/Admin/Screenshot 2026-05-09 223621.png"
+   ]
+};
+
+const esp32DroneProject = {
+   id: "esp32drone",
+   isAppLike: true,
+   name: "ESP32 Custom Flight Controller Drone",
+   category: "Academic Project (Selected)",
+   images: [
+      "/uni_project/main.jpg",
+      "/uni_project/image two.jpg",
+      "/uni_project/imagea three.jpg",
+      "/uni_project/image four.jpg"
+   ],
+   desc: "An academic project to build a drone from scratch using an ESP32 as the flight controller, featuring custom PID tuning and sensor fusion.",
+   stack: ["ESP32", "MPU6050", "C++", "PID Controller", "UDP/Wi-Fi"],
+   liveLink: "#",
+   repoLink: "#",
+   version: "v1.0",
+   updateNote: "Academic Hardware Project",
+   developer: "Team of 4 (Hardware, Embedded, Sensor Fusion, Control)",
+   story: "Building a drone with ready-made flight controllers (like Pixhawk or CC3D) is easy. But we wanted to build one from scratch. Our main goal was to use an ESP32 as the brain. We wanted to write our own code for everything, from reading sensor data to spinning the motors.",
+   problem: "Balancing the drone was the hardest part. The raw data from the MPU6050 sensor had a lot of noise, making it difficult to maintain stable flight.",
+   solution: "We implemented a custom motor mixing algorithm and a Madgwick filter to process sensor data, converting it into accurate Roll, Pitch, and Yaw angles.",
+   features: [
+      {
+         title: "Hardware & Sensor Fusion",
+         desc: "Used a Madgwick filter to clean up raw MPU6050 sensor noise, allowing us to get precise Roll, Pitch, and Yaw angles."
+      },
+      {
+         title: "Control System & PID Tuning",
+         desc: "Developed a custom motor mixing algorithm using Wi-Fi control inputs. Tuned the PID controller to keep the drone incredibly steady in the air."
+      },
+      {
+         title: "ESC Calibration & Balancing",
+         desc: "Configured precise PWM signals for the ESCs and carefully calibrated the drone's physical Center of Gravity."
+      }
    ]
 };
 
@@ -1570,11 +1612,12 @@ function App() {
             {/* SKILLS SECTION */}
             <section id="skills">
                <SectionTitle num="03" title="Technical Proficiency" />
-               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+               <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
                   <SkillCard title="Core CS" icon={Code2} items={skills.core} />
                   <SkillCard title="Systems" icon={Database} items={skills.systems} />
                   <SkillCard title="AI-Assisted" icon={Bot} items={skills.aiAssisted} />
                   <SkillCard title="Learning" icon={BookOpen} items={skills.learning} />
+                  <SkillCard title="Tools & Platforms" icon={Wrench} items={skills.tools} />
                </div>
             </section>
 
@@ -1597,7 +1640,11 @@ function App() {
                               href={project.liveLink}
                               target="_blank"
                               rel="noreferrer"
-                              className="flex-1 py-2 border border-black text-xs font-bold uppercase flex items-center justify-center gap-2 hover:bg-black hover:text-white transition"
+                              className={`flex-1 py-2 border text-xs font-bold uppercase flex items-center justify-center gap-2 transition ${
+                                 project.id === "tdoublehfm"
+                                 ? "border-red-600 text-red-600 hover:bg-red-600 hover:text-white"
+                                 : "border-black hover:bg-black hover:text-white"
+                              }`}
                            >
                               Live <Globe size={14} />
                            </a>
@@ -1618,9 +1665,66 @@ function App() {
                </div>
             </section>
 
+            {/* ACADEMIC PROJECT SECTION */}
+            <section id="academic">
+               <SectionTitle num="05" title="Academic Projects" />
+               <div className="border border-black p-6 bg-white flex flex-col lg:flex-row gap-8 mb-16">
+                  {/* Left/Top Side: Title & Images */}
+                  <div className="lg:w-1/2 flex flex-col gap-6">
+                     <div>
+                        <h3 className="text-3xl font-bold uppercase leading-tight">{esp32DroneProject.name}</h3>
+                        <div className="flex flex-wrap gap-2 mt-3">
+                           {esp32DroneProject.stack.map(tech => (
+                              <span key={tech} className="text-[10px] font-mono font-bold border border-black px-2 py-1 bg-black text-white">{tech}</span>
+                           ))}
+                        </div>
+                     </div>
+                     <div className="grid grid-cols-2 gap-3">
+                        {esp32DroneProject.images.map((img, i) => (
+                           <div key={i} className="aspect-square border border-black bg-gray-100 overflow-hidden group">
+                              <img src={img} alt={`Drone view ${i + 1}`} className="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
+                           </div>
+                        ))}
+                     </div>
+                  </div>
+
+                  {/* Right/Bottom Side: Story & Details */}
+                  <div className="lg:w-1/2 flex flex-col gap-6">
+                     <div>
+                        <h4 className="font-bold uppercase text-sm mb-2 border-b-2 border-black inline-block">The Vision</h4>
+                        <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-wrap">{esp32DroneProject.story}</p>
+                     </div>
+                     <div className="grid sm:grid-cols-2 gap-6">
+                         <div>
+                            <h4 className="font-bold uppercase text-sm mb-2 border-b-2 border-black inline-block">The Challenge</h4>
+                            <p className="text-xs text-gray-700 leading-relaxed">{esp32DroneProject.problem}</p>
+                         </div>
+                         <div>
+                            <h4 className="font-bold uppercase text-sm mb-2 border-b-2 border-black inline-block">The Solution</h4>
+                            <p className="text-xs text-gray-700 leading-relaxed">{esp32DroneProject.solution}</p>
+                         </div>
+                     </div>
+                     <div className="border border-black p-4 bg-gray-50 mt-auto">
+                        <h4 className="font-bold uppercase text-sm mb-3">Key Features</h4>
+                        <div className="grid gap-3">
+                           {esp32DroneProject.features.map((feature, i) => (
+                              <div key={i}>
+                                 <h5 className="font-bold text-xs uppercase flex items-center gap-2">
+                                    <span className="w-1.5 h-1.5 bg-black rounded-full block"></span>
+                                    {feature.title}
+                                 </h5>
+                                 <p className="text-xs text-gray-600 mt-1 ml-3.5">{feature.desc}</p>
+                              </div>
+                           ))}
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </section>
+
             {/* NEW MOBILE APP SECTION */}
             <section id="app">
-               <SectionTitle num="05" title="Mobile Applications" />
+               <SectionTitle num="06" title="Mobile Applications" />
                <div className="grid md:grid-cols-2 gap-6">
                   {allApps.map((app) => {
                      const audioControl = app.id === "audia" ? audiaAudioControl : {};
@@ -1707,7 +1811,7 @@ function App() {
 
             {/* MEDIA SECTION (Split Layout) */}
             <section id="media">
-               <SectionTitle num="06" title="Media & Broadcast" />
+               <SectionTitle num="07" title="Media & Broadcast" />
 
                <div className="grid md:grid-cols-2 gap-8">
 
