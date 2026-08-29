@@ -210,16 +210,16 @@ const skills = {
 };
 
 // --- NEW APP DATA ---
-const announcementText = "New version released: Audia Player v9.0.7 is live.";
+const announcementText = "New version released: Audia Player v9.0.9 is live.";
 
 const playTimeApp = {
    id: "audia",
    name: "Audia Player: Music UI",
-   version: "9.0.7",
+   version: "9.0.9",
    updateNote: announcementText,
    icon: "/audiaplayer/audia_player_logo.png",
    developer: "Tanjil Hasan Himel",
-   downloadLink: "https://github.com/TanjilHasan-Himel/app/releases/download/audio/AudiaPlayer_9.0.7.apk",
+   downloadLink: "https://github.com/TanjilHasan-Himel/app/releases/download/audio/Audia-Player-9.0.9.apk",
    story: "Audia Player is a clean, lightweight music player UI built to respect listeners and keep the focus on sound.",
    why: "This app stays in active development with frequent improvements and refinements.",
    features: [
