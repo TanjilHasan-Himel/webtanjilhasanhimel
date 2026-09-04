@@ -394,6 +394,12 @@ const appScreens = {
       "/webprojects/hajj/Site User/Screenshot 2026-05-09 223524.png",
       "/webprojects/hajj/Site User/Screenshot 2026-05-09 223548.png",
       "/webprojects/hajj/Admin/Screenshot 2026-05-09 223621.png"
+   ],
+   thehumantape: [
+      "/thehumantape/landing page.png",
+      "/thehumantape/crrewpage.png",
+      "/thehumantape/admin access.png",
+      "/thehumantape/mail.png"
    ]
 };
 
@@ -436,6 +442,55 @@ const esp32DroneProject = {
 
 const allApps = [playTimeApp, smartLibraryApp];
 const projects = [
+   {
+      id: "thehumantape",
+      isAppLike: true,
+      name: "The Human Tape — Custom Media Platform & Admin Vault",
+      category: "Product Architecture | UI/UX Direction",
+      img: "/thehumantape/landing page.png",
+      desc: "A high-speed, cinema-grade platform for single, zero-bloat media hub with zero-compromise security.",
+      stack: ["Next.js", "Tailwind", "Framer Motion", "Supabase", "Resend API"],
+      liveLink: "https://thehumantape.vercel.app/",
+      repoLink: "#",
+      icon: "/thehumantape/landing page.png",
+      version: "v1.0",
+      updateNote: "Custom Media Platform",
+      developer: "Tanjil Hasan Himel (Product Architect)",
+      story: "Generic website builders (Wix, Squarespace) ba standard social links (Linktree) indie media production-er raw aesthetic dhorte pare na, plus media embed management-e control thake na.\n\nThe Human Tape-er jonno dorkar chilo emon ekta high-speed, cinema-grade platform jekhane media links (YouTube long-form, Shorts, Reels) ekta single, zero-bloat hub theke dynamically control kora jabe, abong zero-compromise security thakbe.",
+      problem: "Generic website builders and standard social links fail to capture the raw aesthetic of indie media production and lack control over media embed management.",
+      solution: "Built a high-speed, cinema-grade custom platform with native ingestion via Next.js Server Actions, a single zero-bloat hub for media links, and a strict zero-compromise security architecture via Supabase.",
+      aiCodingStory: "Traditional slow manual coding-er poriborte, modern developer tooling (Cursor/LLMs/antigravity/claudecode/codex) use kore exact structural prompt ebong continuous architectural feedback loop-er maddhome Next.js App Router ebong Supabase logic code-base generate ebong debug kora hoyeche.",
+      features: [
+         {
+            title: "System Architecture & Database Design",
+            desc: "Relational Schema: media_items table diye frontend dynamic rendering ebong team_members table diye public cast management handle kora hoyeche. Row Level Security (RLS) implement kora hoyeche jate public shudhu content read korte pare, kono edit/insert/delete operation shudhumatro authenticated founder access chara possible na."
+         },
+         {
+            title: "Native Ingestion",
+            desc: "External Google Form embed-er visual clutter bad diye native Next.js Server Action build kora hoyeche, jeta submission direct founders-er kache deliver kore."
+         },
+         {
+            title: "Custom Access Control & Hidden Vault",
+            desc: "Generic admin panel-er public attack surface minimize korar jonno hidden obscure route set kora hoyeche with noindex, nofollow metadata. Zero Public Signup, shudhu Supabase backend theke manually provisioned admin access kaj kore."
+         },
+         {
+            title: "Automated Security Telemetry",
+            desc: "Successful login holei Next.js Server Action-er maddhome instant Resend API trigger hoy, jeta account credentials ebong precise timestamp founders-er inbox-e security alert pathiye dey."
+         },
+         {
+            title: "Key Results",
+            desc: "Zero Monthly Cost with free-tier infrastructure. True Ownership with 100% data ebong UI-er control. Instant Content Updates jekhane Admin vault-e link paste korar sathe sathe public feed dynamically sync hoy."
+         }
+      ],
+      techTable: [
+         { component: "Frontend & Framework", tech: "Next.js (App Router), Tailwind CSS, Framer Motion" },
+         { component: "Database & Auth", tech: "Supabase (PostgreSQL, Row Level Security, Custom Auth)" },
+         { component: "Email & Telemetry", tech: "Resend API (Server Actions)" },
+         { component: "Design Aesthetic", tech: "Indie Minimalist, Glassmorphism, Dark Mode" }
+      ],
+      downloadLink: "#",
+      sourceCode: "Private"
+   },
    {
       id: "tdoublehfm",
       isAppLike: true,
@@ -967,6 +1022,7 @@ const AppDetailModal = ({ isOpen, app, onClose }) => {
    const olderAppScreens = app?.id === "smartlib" ? appScreens.smartlib_older_app : [];
    const olderAdminScreens = app?.id === "smartlib" ? appScreens.smartlib_older_admin : [];
    const noorScreens = app?.id === "noor" ? appScreens.noor : [];
+   const thehumantapeScreens = app?.id === "thehumantape" ? appScreens.thehumantape : [];
    const [currentSlide, setCurrentSlide] = useState(0);
    const [studentCurrentSlide, setStudentCurrentSlide] = useState(0);
    const [adminCurrentSlide, setAdminCurrentSlide] = useState(0);
@@ -974,6 +1030,7 @@ const AppDetailModal = ({ isOpen, app, onClose }) => {
    const [olderAppCurrentSlide, setOlderAppCurrentSlide] = useState(0);
    const [olderAdminCurrentSlide, setOlderAdminCurrentSlide] = useState(0);
    const [noorCurrentSlide, setNoorCurrentSlide] = useState(0);
+   const [thehumantapeCurrentSlide, setThehumantapeCurrentSlide] = useState(0);
 
    const handlePrev = () => {
       if (app?.id === "smartlib") {
@@ -1390,6 +1447,53 @@ const AppDetailModal = ({ isOpen, app, onClose }) => {
                                              {...previewProps}
                                              onClick={() => setNoorCurrentSlide(idx)}
                                              className={`aspect-square border-2 ${idx === noorCurrentSlide ? "border-black" : "border-gray-300"} overflow-hidden relative group cursor-pointer bg-gray-50`}
+                                             whileHover={{ scale: 1.1 }}
+                                          >
+                                             <img src={src} alt={`Thumb ${idx + 1}`} className="w-full h-full object-cover" />
+                                             <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-50 transform -rotate-45">
+                                                <span className="text-[6px] md:text-[8px] font-black uppercase text-black drop-shadow-sm whitespace-nowrap">Tanjil hasan</span>
+                                             </div>
+                                          </motion.button>
+                                       </div>
+                                    );
+                                 })}
+                              </div>
+                           </div>
+                        </div>
+                     )}
+
+                     {/* Screenshots - The Human Tape */}
+                     {app.id === "thehumantape" && thehumantapeScreens.length > 0 && (
+                        <div>
+                           <h3 className="font-bold uppercase text-sm mb-3 text-black">📸 Project Screenshots</h3>
+                           <div className="space-y-3">
+                              <div className="border-2 border-black bg-gray-50 relative group overflow-hidden">
+                                 <img
+                                    src={thehumantapeScreens[thehumantapeCurrentSlide]}
+                                    alt={`The Human Tape Screen ${thehumantapeCurrentSlide + 1}`}
+                                    className="w-full h-auto max-h-[500px] object-contain"
+                                 />
+                                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-30 transform -rotate-12">
+                                    <span className="text-4xl md:text-6xl font-black uppercase text-gray-800 drop-shadow-md tracking-widest text-center whitespace-nowrap">Tanjil hasan Project</span>
+                                 </div>
+                              </div>
+                              <div className="flex gap-2">
+                                 <button onClick={() => setThehumantapeCurrentSlide(Math.max(0, thehumantapeCurrentSlide - 1))} disabled={thehumantapeCurrentSlide === 0} className="flex-1 border border-black py-2 font-bold uppercase hover:bg-black hover:text-white transition disabled:opacity-50 text-black">Prev</button>
+                                 <span className="flex items-center justify-center px-4 border border-black font-mono text-xs text-black">{thehumantapeCurrentSlide + 1}/{thehumantapeScreens.length}</span>
+                                 <button onClick={() => setThehumantapeCurrentSlide(Math.min(thehumantapeScreens.length - 1, thehumantapeCurrentSlide + 1))} disabled={thehumantapeCurrentSlide === thehumantapeScreens.length - 1} className="flex-1 border border-black py-2 font-bold uppercase hover:bg-black hover:text-white transition disabled:opacity-50 text-black">Next</button>
+                              </div>
+                              {/* Thumbnails */}
+                              <div className="grid grid-cols-6 md:grid-cols-8 gap-1">
+                                 {thehumantapeScreens.map((src, idx) => {
+                                    const { previewProps, previewPortal } = CursorPreview({ image: src, title: `Screen ${idx + 1}` });
+                                    return (
+                                       <div key={idx}>
+                                          {previewPortal}
+                                          <motion.button
+                                             type="button"
+                                             {...previewProps}
+                                             onClick={() => setThehumantapeCurrentSlide(idx)}
+                                             className={`aspect-square border-2 ${idx === thehumantapeCurrentSlide ? "border-black" : "border-gray-300"} overflow-hidden relative group cursor-pointer bg-gray-50`}
                                              whileHover={{ scale: 1.1 }}
                                           >
                                              <img src={src} alt={`Thumb ${idx + 1}`} className="w-full h-full object-cover" />
