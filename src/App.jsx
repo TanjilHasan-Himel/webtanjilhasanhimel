@@ -400,6 +400,12 @@ const appScreens = {
       "/thehumantape/crrewpage.png",
       "/thehumantape/admin access.png",
       "/thehumantape/mail.png"
+   ],
+   printdao: [
+      "/Printdao/main.png",
+      "/Printdao/near shop.png",
+      "/Printdao/seller landing.png",
+      "/Printdao/seller dash.png"
    ]
 };
 
@@ -442,6 +448,64 @@ const esp32DroneProject = {
 
 const allApps = [playTimeApp, smartLibraryApp];
 const projects = [
+   {
+      id: "printdao",
+      isAppLike: true,
+      name: "PrintDAO — Multi-Tenant Print Automation System",
+      category: "Systems Architecture | AI Agent Orchestration",
+      img: "/Printdao/main.png",
+      desc: "A hybrid cloud-to-desktop system turning AI-generated code into a real multi-tenant print automation platform with hardware constraints.",
+      stack: ["Next.js", "Supabase", "Python", "Tkinter", "pdf-lib"],
+      liveLink: "https://printdao.vercel.app/",
+      repoLink: "#",
+      icon: "/Printdao/main.png",
+      version: "v1.0",
+      updateNote: "Real-world Hybrid Print Bridge",
+      developer: "Tanjil Hasan Himel",
+      story: "If you’ve ever tried to turn an AI coding agent loose on a real product with physical hardware constraints and complex operational logic, you’ll recognize a lot of this. PrintDAO was built to solve the universal friction of university-area photocopy shops where customers send files via messaging apps and owners count pages manually.",
+      problem: "Customers send files over messaging apps, owners download them, count pages manually, guess pricing, and hope the customer shows up to pay. The entire process is full of friction and manual overhead.",
+      solution: "Scan QR → Upload → See Price → Pay → Track → Collect, with zero account creation required on the customer side, and an automated desktop print bridge for the shop owner.",
+      aiCodingStory: "Handing a strict PRD to an AI agent taught me exactly where these tools fail. LLMs default to naive, happy-path CRUD operations. I had to explicitly demand blunt, direct answers from the agent, enforce architectural requirements for a local background service, and solve state machine corruption through strict migrations.",
+      features: [
+         {
+            title: "The Non-FIFO Queue",
+            desc: "The queue couldn't be FIFO; it had to be based on payment confirmation. If Customer A and B order via cash but haven't arrived, and Customer C walks in with cash ready, a rigid chronological print queue forces the shop owner to manually shuffle jobs."
+         },
+         {
+            title: "Hardware Bridge (Desktop-to-Cloud)",
+            desc: "A local Windows Python application that listens to Supabase Realtime and drives physical printers directly. Features a thread-safe UI in Tkinter and explicit human-in-the-loop states (Approve, Hold, Reject) for real money transactions."
+         },
+         {
+            title: "Lossless B&W Printer Routing",
+            desc: "Vector quality trap avoided by duplicating the printer at the Windows OS level, setting its driver default to grayscale, and routing jobs accordingly—ensuring zero quality loss and zero server-side processing cost."
+         },
+         {
+            title: "Strict DevOps & RLS Architecture",
+            desc: "Multi-tenancy implemented with explicit ownership-scoped Row Level Security (RLS). Guest order inserts are routed strictly through secure Next.js server actions, and page count/pricing are calculated server-side using pdf-lib to prevent client manipulation."
+         },
+         {
+            title: "Scalability & Load Handling",
+            desc: "Designed to handle heavy user traffic and multi-server environments seamlessly. Incorporates rate limiting to protect endpoints and advanced queue mechanisms to distribute print jobs without overloading the local hardware bridge or the cloud backend."
+         },
+         {
+            title: "Storage & File Management",
+            desc: "Implements strict lifecycle policies for file uploads. Files are securely managed via Supabase Storage, ensuring documents are processed efficiently and only deleted when absolutely required, while keeping the transactional history intact ('File deletion does not mean order deletion')."
+         },
+         {
+            title: "Comprehensive Security & Rate Limiting",
+            desc: "Beyond RLS, the system restricts abuse via strict rate limiting on document uploads and API requests. Every print order must pass through server-side validation, ensuring malicious users cannot spoof page counts, flood the database, or exhaust storage quotas."
+         }
+      ],
+      techTable: [
+         { component: "Frontend & Backend", tech: "Next.js 14, Vercel CI/CD" },
+         { component: "Database & Auth", tech: "Supabase (Postgres, Auth, Storage, Realtime)" },
+         { component: "Desktop Bridge", tech: "Python, Tkinter, PyMuPDF, Windows OS Print Routing" },
+         { component: "Security", tech: "Row Level Security (RLS), Server-side calculation, Rate Limiting" },
+         { component: "Infrastructure", tech: "Multi-Server Ready, Scalable Object Storage" }
+      ],
+      downloadLink: "#",
+      sourceCode: "Private"
+   },
    {
       id: "thehumantape",
       isAppLike: true,
@@ -1023,6 +1087,7 @@ const AppDetailModal = ({ isOpen, app, onClose }) => {
    const olderAdminScreens = app?.id === "smartlib" ? appScreens.smartlib_older_admin : [];
    const noorScreens = app?.id === "noor" ? appScreens.noor : [];
    const thehumantapeScreens = app?.id === "thehumantape" ? appScreens.thehumantape : [];
+   const printdaoScreens = app?.id === "printdao" ? appScreens.printdao : [];
    const [currentSlide, setCurrentSlide] = useState(0);
    const [studentCurrentSlide, setStudentCurrentSlide] = useState(0);
    const [adminCurrentSlide, setAdminCurrentSlide] = useState(0);
@@ -1031,6 +1096,7 @@ const AppDetailModal = ({ isOpen, app, onClose }) => {
    const [olderAdminCurrentSlide, setOlderAdminCurrentSlide] = useState(0);
    const [noorCurrentSlide, setNoorCurrentSlide] = useState(0);
    const [thehumantapeCurrentSlide, setThehumantapeCurrentSlide] = useState(0);
+   const [printdaoCurrentSlide, setPrintdaoCurrentSlide] = useState(0);
 
    const handlePrev = () => {
       if (app?.id === "smartlib") {
@@ -1494,6 +1560,53 @@ const AppDetailModal = ({ isOpen, app, onClose }) => {
                                              {...previewProps}
                                              onClick={() => setThehumantapeCurrentSlide(idx)}
                                              className={`aspect-square border-2 ${idx === thehumantapeCurrentSlide ? "border-black" : "border-gray-300"} overflow-hidden relative group cursor-pointer bg-gray-50`}
+                                             whileHover={{ scale: 1.1 }}
+                                          >
+                                             <img src={src} alt={`Thumb ${idx + 1}`} className="w-full h-full object-cover" />
+                                             <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-50 transform -rotate-45">
+                                                <span className="text-[6px] md:text-[8px] font-black uppercase text-black drop-shadow-sm whitespace-nowrap">Tanjil hasan</span>
+                                             </div>
+                                          </motion.button>
+                                       </div>
+                                    );
+                                 })}
+                              </div>
+                           </div>
+                        </div>
+                     )}
+
+                     {/* Screenshots - PrintDAO */}
+                     {app.id === "printdao" && printdaoScreens.length > 0 && (
+                        <div>
+                           <h3 className="font-bold uppercase text-sm mb-3 text-black">📸 Project Screenshots</h3>
+                           <div className="space-y-3">
+                              <div className="border-2 border-black bg-gray-50 relative group overflow-hidden">
+                                 <img
+                                    src={printdaoScreens[printdaoCurrentSlide]}
+                                    alt={`PrintDAO Screen ${printdaoCurrentSlide + 1}`}
+                                    className="w-full h-auto max-h-[500px] object-contain"
+                                 />
+                                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-30 transform -rotate-12">
+                                    <span className="text-4xl md:text-6xl font-black uppercase text-gray-800 drop-shadow-md tracking-widest text-center whitespace-nowrap">Tanjil hasan Project</span>
+                                 </div>
+                              </div>
+                              <div className="flex gap-2">
+                                 <button onClick={() => setPrintdaoCurrentSlide(Math.max(0, printdaoCurrentSlide - 1))} disabled={printdaoCurrentSlide === 0} className="flex-1 border border-black py-2 font-bold uppercase hover:bg-black hover:text-white transition disabled:opacity-50 text-black">Prev</button>
+                                 <span className="flex items-center justify-center px-4 border border-black font-mono text-xs text-black">{printdaoCurrentSlide + 1}/{printdaoScreens.length}</span>
+                                 <button onClick={() => setPrintdaoCurrentSlide(Math.min(printdaoScreens.length - 1, printdaoCurrentSlide + 1))} disabled={printdaoCurrentSlide === printdaoScreens.length - 1} className="flex-1 border border-black py-2 font-bold uppercase hover:bg-black hover:text-white transition disabled:opacity-50 text-black">Next</button>
+                              </div>
+                              {/* Thumbnails */}
+                              <div className="grid grid-cols-6 md:grid-cols-8 gap-1">
+                                 {printdaoScreens.map((src, idx) => {
+                                    const { previewProps, previewPortal } = CursorPreview({ image: src, title: `Screen ${idx + 1}` });
+                                    return (
+                                       <div key={idx}>
+                                          {previewPortal}
+                                          <motion.button
+                                             type="button"
+                                             {...previewProps}
+                                             onClick={() => setPrintdaoCurrentSlide(idx)}
+                                             className={`aspect-square border-2 ${idx === printdaoCurrentSlide ? "border-black" : "border-gray-300"} overflow-hidden relative group cursor-pointer bg-gray-50`}
                                              whileHover={{ scale: 1.1 }}
                                           >
                                              <img src={src} alt={`Thumb ${idx + 1}`} className="w-full h-full object-cover" />
