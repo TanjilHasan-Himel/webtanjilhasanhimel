@@ -406,6 +406,16 @@ const appScreens = {
       "/Printdao/near shop.png",
       "/Printdao/seller landing.png",
       "/Printdao/seller dash.png"
+   ],
+   quarkledger: [
+      "/Quarkledger/main.png",
+      "/Quarkledger/main 2.png",
+      "/Quarkledger/cms.png",
+      "/Quarkledger/3.png",
+      "/Quarkledger/4.png",
+      "/Quarkledger/5.png",
+      "/Quarkledger/6.png",
+      "/Quarkledger/7.png"
    ]
 };
 
@@ -448,6 +458,55 @@ const esp32DroneProject = {
 
 const allApps = [playTimeApp, smartLibraryApp];
 const projects = [
+   {
+      id: "quarkledger",
+      isAppLike: true,
+      name: "Quark Ledger V3 — Engineering an Scientific Broadsheet",
+      category: "System Architecture | AI Case Study",
+      img: "/Quarkledger/main.png",
+      desc: "A technical deep dive into designing an anti-fragile RSS ingestion pipeline, Gemini-driven bilingual synthesis, enterprise RBAC newsroom governance, and 19th-century tactile aesthetics in a modern Next.js ecosystem.",
+      stack: ["Next.js", "Supabase", "AI", "PostgreSQL", "Gemini 3.6 Flash"],
+      liveLink: "https://quarkledger.vercel.app/",
+      repoLink: "#",
+      icon: "/Quarkledger/main.png",
+      version: "V3",
+      updateNote: "Enterprise RSS & AI Synthesis",
+      developer: "Tanjil Hasan Himel (Tried to be an Architect)",
+      story: "Most modern AI web applications suffer from the same affliction: they are thin wrappers around API endpoints, packaged in cookie-cutter dark SaaS dashboards with generic purple gradients. When we embarked on building Quark Ledger V3, our goal was categorically different.\n\nWe set out to engineer a completely autonomous, enterprise-grade news broadsheet dedicated to fundamental physics, frontier robotics, biotechnology, and space cosmology. It needed to ingest scores of live global feeds, synthesize peer-reviewed scientific breakthroughs into standardized Bengali Academy prose, enforce multi-tiered editorial access control, and evoke the timeless majesty of classic 1890s newsprint—all while operating on an uncompromising $0/month serverless budget.",
+      problem: "The standard tutorial advice for building an AI news aggregator suggests creating an API route that queries external RSS feeds. In production, this naive architecture collapses almost immediately.\n\nWhen scaling to 40+ diverse RSS endpoints, three fatal bottlenecks surfaced:\n1. The 10-Second Vercel Execution Wall: Fetching 40 heterogeneous feeds sequentially takes upwards of 35–50 seconds.\n2. LLM Hallucination and Redundancy Spikes: Simultaneously parsing raw XML blobs frequently led to duplicated synthesis runs.\n3. Cold-Start Memory Bloat: Parsing multi-megabyte XML trees triggered excessive memory allocation.",
+      solution: "Rather than upgrading to cost-prohibitive dedicated VPS instances, we engineered an asynchronous, queue-less distributed state machine leveraging scheduled cron workflows paired with Supabase (PostgreSQL) state tracking.\n\nThe breakthrough mechanism is the Round-Robin State Invariant using FOR UPDATE SKIP LOCKED. Instead of polling all 40 sources simultaneously, the runner executes on a lightweight cron, querying only the 5 stalest sources, ensuring execution completes in under 6 seconds inside the zero-cost tier.",
+      aiCodingStory: "Integrating Gemini 3.6 Flash revolutionized our workflow. It doesn't just blindly translate; it synthesizes complex scientific jargon from Nature or NASA into perfectly structured, formal Standard Bengali (প্রমিত বাংলা) without losing factual integrity or hallucinating.",
+      features: [
+         {
+            title: "Round-Robin Ingestion State Machine",
+            desc: "Atomic lease query executed by autonomous ingest worker using PostgreSQL's FOR UPDATE SKIP LOCKED. Multiple concurrent ingestion runs never clash."
+         },
+         {
+            title: "Enterprise Newsroom Governance (RBAC)",
+            desc: "Strict Separation of Duties where human persons vs auth identities are separated. The audit_logs table is guarded by a PostgreSQL trigger that aborts any mutation, making revisionist censorship structurally impossible."
+         },
+         {
+            title: "Bento Broadsheet UI",
+            desc: "Bridged the dichotomy between 19th-century tactile aesthetics and modern readability by fusing Tactile Broadsheet Typography with a modern Modular Bento Box Architecture."
+         },
+         {
+            title: "Dynamic 198-Point Taxonomy",
+            desc: "The AI autonomously maps incoming unstructured data across a vast taxonomy of 16 parent domains and 163 sub-categories flawlessly."
+         },
+         {
+            title: "Instantaneous Public Rendering",
+            desc: "Thanks to Next.js App Router and intelligent data fetching bypassing RLS securely via Server Components, the public-facing broadsheet loads with blazing speed."
+         }
+      ],
+      techTable: [
+         { component: "Frontend Framework", tech: "Next.js App Router" },
+         { component: "Database & State Machine", tech: "Supabase (PostgreSQL, Cron Workflows)" },
+         { component: "AI Synthesis Engine", tech: "Gemini 3.6 Flash" },
+         { component: "UI Architecture", tech: "Modular Bento Box & Tactile Typography" }
+      ],
+      downloadLink: "#",
+      sourceCode: "Private"
+   },
    {
       id: "printdao",
       isAppLike: true,
@@ -1088,6 +1147,7 @@ const AppDetailModal = ({ isOpen, app, onClose }) => {
    const noorScreens = app?.id === "noor" ? appScreens.noor : [];
    const thehumantapeScreens = app?.id === "thehumantape" ? appScreens.thehumantape : [];
    const printdaoScreens = app?.id === "printdao" ? appScreens.printdao : [];
+   const quarkledgerScreens = app?.id === "quarkledger" ? appScreens.quarkledger : [];
    const [currentSlide, setCurrentSlide] = useState(0);
    const [studentCurrentSlide, setStudentCurrentSlide] = useState(0);
    const [adminCurrentSlide, setAdminCurrentSlide] = useState(0);
@@ -1097,6 +1157,7 @@ const AppDetailModal = ({ isOpen, app, onClose }) => {
    const [noorCurrentSlide, setNoorCurrentSlide] = useState(0);
    const [thehumantapeCurrentSlide, setThehumantapeCurrentSlide] = useState(0);
    const [printdaoCurrentSlide, setPrintdaoCurrentSlide] = useState(0);
+   const [quarkledgerCurrentSlide, setQuarkledgerCurrentSlide] = useState(0);
 
    const handlePrev = () => {
       if (app?.id === "smartlib") {
@@ -1607,6 +1668,53 @@ const AppDetailModal = ({ isOpen, app, onClose }) => {
                                              {...previewProps}
                                              onClick={() => setPrintdaoCurrentSlide(idx)}
                                              className={`aspect-square border-2 ${idx === printdaoCurrentSlide ? "border-black" : "border-gray-300"} overflow-hidden relative group cursor-pointer bg-gray-50`}
+                                             whileHover={{ scale: 1.1 }}
+                                          >
+                                             <img src={src} alt={`Thumb ${idx + 1}`} className="w-full h-full object-cover" />
+                                             <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-50 transform -rotate-45">
+                                                <span className="text-[6px] md:text-[8px] font-black uppercase text-black drop-shadow-sm whitespace-nowrap">Tanjil hasan</span>
+                                             </div>
+                                          </motion.button>
+                                       </div>
+                                    );
+                                 })}
+                              </div>
+                           </div>
+                        </div>
+                     )}
+
+                     {/* Screenshots - Quark Ledger */}
+                     {app.id === "quarkledger" && quarkledgerScreens.length > 0 && (
+                        <div>
+                           <h3 className="font-bold uppercase text-sm mb-3 text-black">📸 Project Screenshots</h3>
+                           <div className="space-y-3">
+                              <div className="border-2 border-black bg-gray-50 relative group overflow-hidden">
+                                 <img
+                                    src={quarkledgerScreens[quarkledgerCurrentSlide]}
+                                    alt={`Quark Ledger Screen ${quarkledgerCurrentSlide + 1}`}
+                                    className="w-full h-auto max-h-[500px] object-contain"
+                                 />
+                                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-30 transform -rotate-12">
+                                    <span className="text-4xl md:text-6xl font-black uppercase text-gray-800 drop-shadow-md tracking-widest text-center whitespace-nowrap">Tanjil hasan Project</span>
+                                 </div>
+                              </div>
+                              <div className="flex gap-2">
+                                 <button onClick={() => setQuarkledgerCurrentSlide(Math.max(0, quarkledgerCurrentSlide - 1))} disabled={quarkledgerCurrentSlide === 0} className="flex-1 border border-black py-2 font-bold uppercase hover:bg-black hover:text-white transition disabled:opacity-50 text-black">Prev</button>
+                                 <span className="flex items-center justify-center px-4 border border-black font-mono text-xs text-black">{quarkledgerCurrentSlide + 1}/{quarkledgerScreens.length}</span>
+                                 <button onClick={() => setQuarkledgerCurrentSlide(Math.min(quarkledgerScreens.length - 1, quarkledgerCurrentSlide + 1))} disabled={quarkledgerCurrentSlide === quarkledgerScreens.length - 1} className="flex-1 border border-black py-2 font-bold uppercase hover:bg-black hover:text-white transition disabled:opacity-50 text-black">Next</button>
+                              </div>
+                              {/* Thumbnails */}
+                              <div className="grid grid-cols-6 md:grid-cols-8 gap-1">
+                                 {quarkledgerScreens.map((src, idx) => {
+                                    const { previewProps, previewPortal } = CursorPreview({ image: src, title: `Screen ${idx + 1}` });
+                                    return (
+                                       <div key={idx}>
+                                          {previewPortal}
+                                          <motion.button
+                                             type="button"
+                                             {...previewProps}
+                                             onClick={() => setQuarkledgerCurrentSlide(idx)}
+                                             className={`aspect-square border-2 ${idx === quarkledgerCurrentSlide ? "border-black" : "border-gray-300"} overflow-hidden relative group cursor-pointer bg-gray-50`}
                                              whileHover={{ scale: 1.1 }}
                                           >
                                              <img src={src} alt={`Thumb ${idx + 1}`} className="w-full h-full object-cover" />
