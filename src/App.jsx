@@ -143,7 +143,7 @@ const personalInfo = {
    email: "taanjilhasan@gmail.com",
    phone: "+880 1774 685310",
    location: "Rajshahi, Bangladesh",
-   resume: "/resume.html?download=1",
+   resume: "/tanjil hasan.pdf",
    linkedin: "https://www.linkedin.com/in/tanjilhasanhimel/",
    github: "https://github.com/TanjilHasan-Himel",
    facebook: "https://www.facebook.com/tanjilhasan.himel.1",
@@ -1027,7 +1027,7 @@ const Navbar = ({ currentTime }) => (
    <nav className="sticky top-0 z-50 bg-[#f4f4f4] border-b border-black px-6 py-4 flex justify-between items-center">
       <div className="flex items-center gap-2">
          <div className="w-3 h-3 bg-black"></div>
-         <span className="font-bold tracking-tight text-sm">HIMEL.DEV</span>
+         <span className="font-bold tracking-tight text-lg">Tanjil Hasan Himel</span>
       </div>
       <div className="hidden md:flex gap-8 text-xs font-bold uppercase tracking-widest items-center">
          <a href="#about" className="hover:text-gray-500 transition">About</a>
@@ -1822,7 +1822,7 @@ function App() {
    };
 
    return (
-      <div className="bg-[#f4f4f4] text-black font-sans min-h-screen selection:bg-black selection:text-white relative">
+      <div className="bg-[#f4f4f4] text-black font-sans min-h-screen selection:bg-black selection:text-white relative overflow-x-hidden">
          <div className="bg-black text-white text-[10px] md:text-xs font-mono uppercase tracking-widest py-2 overflow-hidden">
             <div className="announcement-marquee" aria-label={announcementText}>
                <div className="announcement-marquee__track">
@@ -1877,7 +1877,11 @@ function App() {
             )}
          </AnimatePresence>
 
-         <main className="max-w-5xl mx-auto px-6 pb-24 border-x border-black/10 min-h-screen bg-white shadow-2xl">
+         <div className="max-w-5xl mx-auto relative">
+            <div className="absolute top-0 bottom-0 -left-6 md:-left-12 w-6 md:w-12 hidden sm:block" style={{ backgroundImage: 'repeating-linear-gradient(45deg, #d1d5db, #d1d5db 1px, transparent 1px, transparent 10px)' }}></div>
+            <div className="absolute top-0 bottom-0 -right-6 md:-right-12 w-6 md:w-12 hidden sm:block" style={{ backgroundImage: 'repeating-linear-gradient(45deg, #d1d5db, #d1d5db 1px, transparent 1px, transparent 10px)' }}></div>
+            
+            <main className="w-full px-6 pb-24 border-x border-red-500 min-h-screen bg-white">
 
             {/* HERO SECTION */}
             <section className="pt-20 pb-12 border-b border-black">
@@ -2221,6 +2225,7 @@ function App() {
             </section>
 
          </main>
+         </div>
 
          {/* STICKY BOTTOM ACTION BAR */}
          <AnimatePresence>
