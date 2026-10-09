@@ -3,7 +3,7 @@ import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motio
 import {
    ArrowUpRight, Github, Linkedin, Facebook, Mail, Phone,
    Download, Globe, Radio, Code2, Mic, Film, X,
-   Cpu, Layers, Wrench, Database, Play, CheckCircle, Smartphone, Bot, BookOpen
+   Cpu, Layers, Wrench, Database, Play, CheckCircle, Smartphone, Bot, BookOpen, Youtube
 } from 'lucide-react';
 
 // --- AUDIO HOOK ---
@@ -135,6 +135,50 @@ const MusicAura = ({ isActive }) => {
    );
 };
 
+const RippleButton = ({ children, href, className, target, colorClass, baseColorClass }) => {
+   const [rippleProps, setRippleProps] = useState({ x: -1, y: -1, show: false });
+   
+   const handleMouseMove = (e) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      setRippleProps({
+         x: e.clientX - rect.left,
+         y: e.clientY - rect.top,
+         show: true
+      });
+   };
+
+   const handleMouseLeave = () => {
+      setRippleProps(prev => ({ ...prev, show: false }));
+   };
+
+   return (
+      <a
+         href={href}
+         target={target}
+         rel={target === "_blank" ? "noreferrer" : undefined}
+         onMouseMove={handleMouseMove}
+         onMouseLeave={handleMouseLeave}
+         className={`relative overflow-hidden flex items-center justify-center ${className || ''} ${baseColorClass}`}
+      >
+         <div 
+            className={`absolute pointer-events-none rounded-full transition-all duration-[600ms] ease-out blur-md ${colorClass}`}
+            style={{
+               width: '300%',
+               paddingBottom: '300%',
+               left: rippleProps.x,
+               top: rippleProps.y,
+               transform: rippleProps.show ? 'translate(-50%, -50%) scale(1)' : 'translate(-50%, -50%) scale(0)',
+               opacity: rippleProps.show ? 1 : 0,
+               zIndex: 0
+            }}
+         />
+         <span className="relative z-10 w-full flex items-center justify-center gap-2">
+            {children}
+         </span>
+      </a>
+   );
+};
+
 // --- 1. DATA CENTER ---
 
 const personalInfo = {
@@ -143,10 +187,12 @@ const personalInfo = {
    email: "taanjilhasan@gmail.com",
    phone: "+880 1774 685310",
    location: "Rajshahi, Bangladesh",
-   resume: "/tanjil hasan.pdf",
+   resume: "https://drive.google.com/file/d/1riSvPEnpvP962nWjjiQrgOfjQD6-lWnV/view?usp=drive_link",
    linkedin: "https://www.linkedin.com/in/tanjilhasanhimel/",
    github: "https://github.com/TanjilHasan-Himel",
    facebook: "https://www.facebook.com/tanjilhasan.himel.1",
+   youtube: "https://www.youtube.com/@TanjilHasanHimel",
+   fiverr: "https://www.fiverr.com/tanjilhasan03/",
    about: {
       journey: "I am a CSE student focused on building web applications and media-driven experiences. I am currently pursuing my B.Sc. in CSE while learning through real projects in radio and media.",
       workStyle: ""
@@ -416,6 +462,11 @@ const appScreens = {
       "/Quarkledger/5.png",
       "/Quarkledger/6.png",
       "/Quarkledger/7.png"
+   ],
+   smartmess: [
+      "/client_project/mess/1 (1).png",
+      "/client_project/mess/1 (2).png",
+      "/client_project/mess/1 (3).png"
    ]
 };
 
@@ -457,6 +508,63 @@ const esp32DroneProject = {
 };
 
 const allApps = [playTimeApp, smartLibraryApp];
+const clientProjects = [
+   {
+      id: "smartmess",
+      isAppLike: true,
+      name: "Smart Mess & Hostel Management System",
+      category: "B2B SaaS | Client Project",
+      img: "/client_project/mess/1 (1).png",
+      desc: "A fault-tolerant property and seat management engine for student hostels.",
+      stack: ["Next.js (App Router)", "PostgreSQL (Supabase)", "Tailwind CSS"],
+      liveLink: "#",
+      repoLink: "#",
+      icon: "/client_project/mess/1 (1).png",
+      version: "Production",
+      updateNote: "Due to client security, ALL cannot be shown",
+      developer: "Tanjil Hasan Himel",
+      story: "বাংলাদেশে মেস ও প্রাইভেট হোস্টেলগুলোর আর্থিক লেনদেন এখনও ৯০% ক্ষেত্রে কাগজের খাতা বা ত্রুটিপূর্ণ এক্সেল শিটের ওপর নির্ভরশীল। প্রতি মাসে গড়ে ১৫-২০% সিট টার্নওভার (শিক্ষার্থী বা মেম্বার পরিবর্তন), মাসের মাঝামাঝি সিটে ওঠা, পেছনের বকেয়া টানাহেঁচড়া এবং মেস ছাড়ার সময় হিসাবের গরমিল বড় ধরনের রাজস্ব ক্ষতির (Revenue Leakage) কারণ হয়ে দাঁড়ায়।\n\nএই কেস স্টাডিতে আলোচনা করা হয়েছে কীভাবে একটি রিয়েল-ওয়ার্ল্ড হোস্টেল ম্যানেজমেন্ট সিস্টেমের তিনটি জটিল চ্যালেঞ্জ সমাধান করা হয়েছে:\n1. The Turnover Problem: একই সিটে প্রতি মাসে ভিন্ন মেম্বার আসা সত্ত্বেও হিস্টোরিক্যাল ডাটা অক্ষুণ্ণ রাখা।\n2. Automated Arrears Engine: পূর্ববর্তী মাসের বকেয়া স্বয়ংক্রিয়ভাবে চলতি মাসে ক্যারি-ফরওয়ার্ড করা।\n3. Print-Ready Admission & Legal Framework: ব্রাউজার থেকেই প্রফেশনাল A4 সাইজ মেম্বারশিপ ফর্ম, ফটো স্লট এবং মেসের নীতিমালা জেনারেট করা।",
+      problem: "সমস্যা ক: ডাটা ওভাররাইটিং বনাম সিট টার্নওভার (The Temporal Allocation Problem)\nসাধারণ প্রথাগত সিস্টেমে ডাটাবেজের `seats` টেবিলে সরাসরি `student_id` যুক্ত করা হয়। বাস্তব সংকট: রহিম জানুয়ারি থেকে মার্চ পর্যন্ত সিট ১০১-এ ছিল। এপ্রিলে রহিম মেস ছেড়ে দেয় এবং করিম ওঠে। যদি সিট টেবিলে রহিমের জায়গায় করিমকে আপডেট করা হয়, তবে জানুয়ারি থেকে মার্চের বার্ষিক রিপোর্টে করিমের নাম চলে আসে এবং রহিমের পেমেন্ট হিস্ট্রি নষ্ট হয়ে যায়।\n\nসমস্যা খ: বকেয়া সমন্বয় ও লেজার জটিলতা (Arrears Carry-Forward)\nশিক্ষার্থীরা নিয়মিত পূর্ণ ভাড়া পরিশোধ করে না। কেউ আংশিক দেয়, কেউ এক মাস পর পর দেয়। বাস্তব সংকট: ম্যানেজার যদি প্রতি মাসে ম্যানুয়ালি হিসাব করে কে কত টাকা আগে বাকি রেখেছিল, তবে মানবিক ভুলের কারণে টাকা গরমিল হয়। প্রয়োজন ছিল এমন একটি ইঞ্জিন যা আগের মাসের বিলের আনপেইড ডেল্টা স্বয়ংক্রিয়ভাবে চলতি মাসের মোট প্রদেয় হিসেবে লক করবে।\n\nসমস্যা গ: পেপারওয়ার্ক ও লিগ্যাল এগ্রিমেন্ট ফ্র্যাগমেন্টেশন\nমেসে নতুন সদস্য ওঠার সময় পুলিশ ভেরিফিকেশন, অভিভাবকের নিশ্চয়তা এবং মেসের নিয়মাবলী সম্বলিত ফরমাল কোনো ডকুমেন্ট থাকে না।",
+      solution: "সমাধান ১: Temporal Decoupling আর্কিটেকচার\nসিট এবং মেম্বারের সরাসরি রিলেশনশিপ ভেঙে একটি ইন্টারমিডিয়েট ট্র্যাকিং লেয়ার (`seat_allocations`) স্থাপন করা হয়েছে। লজিক: সিট একটি স্থায়ী অ্যাসেট, মেম্বার একজন পরিবর্তনশীল সত্তা। ফলাফল: বার্ষিক ১২ মাসের ম্যাট্রিক্স রিপোর্টে যখন মে মাসের ডাটা কোয়েরি করা হয়, তখন সিস্টেম দেখে মে মাসে ওই সিটে নির্দিষ্ট অ্যালোকেশন কার ছিল। ডাটাবেজে রহিমের অতীত ডাটা অক্ষত রেখেই জুনে করিমের নতুন সাইকেল কার্যকর হয়।\n\nসমাধান ২: Automated Arrears & Idempotent Billing Engine\nপ্রতি মাসের ১ তারিখে কার্যকর মেম্বারদের জন্য ব্যাকএন্ডে স্বয়ংক্রিয়ভাবে বিল স্টেটমেন্ট তৈরি হয়।\nTotal Payable = Base Rent + Utility Charges + (Last Month's Total - Last Month's Paid)\nআইডেমপোটেন্সি (Idempotency): ক্রন-জব বা ম্যানেজারের ফলব্যাক বাটনে একাধিক ক্লিক পড়লেও ডুপ্লিকেট বিল তৈরি রোধ করতে `(allocation_id, billing_month)`-এর ওপর কম্পোজিট ইউনিক কনস্ট্রেইন্ট ব্যবহার করা হয়েছে। পেমেন্ট স্টেট মেশিন: পেমেন্ট কালেকশনের সময় তিনটি নিখুঁত ট্রানজিশন মেইনটেইন করা হয়: Unpaid → Partial → Paid। আংশিক জমা হলে স্বয়ংক্রিয়ভাবে রিমেইনিং ব্যালেন্স ভাউচারে প্রিন্ট হয়ে যায়।\n\nসমাধান ৩: Client-Side Admission Slip & Rules Rendering Engine\nসার্ভারে অতিরিক্ত ভারী PDF জেনারেটর প্রসেস না চালিয়ে ক্লায়েন্ট-সাইড অপ্টিমাইজড প্রিন্ট ফ্রেমওয়ার্ক তৈরি করা হয়েছে।",
+      features: [
+         {
+            title: "Temporal Decoupling Architecture",
+            desc: "Broken the direct relationship between Seat and Member by establishing an intermediate tracking layer ('seat_allocations'). Historical data remains perfectly intact."
+         },
+         {
+            title: "Automated Arrears Engine",
+            desc: "Automatically locks the unpaid delta of previous month's bill as total payable for the current month. Prevents manual errors."
+         },
+         {
+            title: "Client-Side Admission Slip",
+            desc: "Optimized print framework following international A4 specifications using CSS @media print. Renders photo slots, addresses, and rulebooks directly from the browser."
+         },
+         {
+            title: "Security & RBAC",
+            desc: "Multi-tier restriction: Owners have full rights over revenue, Managers only have rights for admission and collection. Historical edits are blocked."
+         },
+         {
+            title: "100% Revenue Leakage Prevention",
+            desc: "Members cannot be marked as 'Alumni' without clearing arrears. Ensures zero revenue loss on member exit."
+         },
+         {
+            title: "Zero Infrastructure Cost",
+            desc: "Next.js and Postgres free-tier architecture tuned perfectly so the cloud server cost for a single hostel remains at 0 BDT."
+         }
+      ],
+      techTable: [
+         { component: "Frontend", tech: "Next.js (App Router), Tailwind CSS, shadcn/ui" },
+         { component: "Database ORM", tech: "PostgreSQL (Supabase)" },
+         { component: "Security", tech: "Multi-tier RBAC" }
+      ],
+      downloadLink: "#",
+      sourceCode: "Private - Client Project",
+      review: {
+         name: "Kaysar",
+         quote: "Tanjil saved me at the last minute. While it’s hard to find truly reliable developers these days, Tanjil seamlessly integrates modern tech and styles, delivering exceptional results."
+      }
+   }
+];
 const projects = [
    {
       id: "quarkledger",
@@ -830,6 +938,13 @@ const filmMedia = [
       type: "Film",
       link: "https://www.facebook.com/share/v/1BXhgtBsmu/",
       image: null
+   },
+   {
+      title: "Short Film",
+      role: "Creator / Director",
+      type: "Short Film",
+      link: "https://www.youtube.com/watch?v=pWRFEnnJIJY",
+      image: null
    }
 ];
 
@@ -960,6 +1075,68 @@ const CursorPreview = ({ image, title }) => {
    };
 };
 
+const ReviewPreview = ({ review }) => {
+   const ref = useRef(null);
+   const [isHovered, setIsHovered] = useState(false);
+   const cursorX = useMotionValue(0);
+   const cursorY = useMotionValue(0);
+   const springX = useSpring(cursorX, { stiffness: 250, damping: 25, mass: 0.5 });
+   const springY = useSpring(cursorY, { stiffness: 250, damping: 25, mass: 0.5 });
+   const rotate = useSpring(0, { stiffness: 200, damping: 20 });
+
+   const handleMouseMove = (e) => {
+      cursorX.set(e.clientX);
+      cursorY.set(e.clientY);
+      const rect = ref.current?.getBoundingClientRect();
+      if (rect) {
+         const centerX = rect.left + rect.width / 2;
+         rotate.set((e.clientX - centerX) * 0.04);
+      }
+   };
+
+   return {
+      previewProps: {
+         ref,
+         onMouseMove: handleMouseMove,
+         onMouseEnter: () => setIsHovered(true),
+         onMouseLeave: () => { setIsHovered(false); rotate.set(0); },
+      },
+      previewPortal: review ? (
+         <AnimatePresence>
+            {isHovered && (
+               <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                  style={{
+                     position: 'fixed',
+                     left: springX,
+                     top: springY,
+                     x: '-50%',
+                     y: '-110%',
+                     rotateZ: rotate,
+                     pointerEvents: 'none',
+                     zIndex: 9999,
+                  }}
+                  className="bg-white border-2 border-black p-5 w-80 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col gap-3"
+               >
+                  <div className="flex justify-between items-center border-b-2 border-black pb-2">
+                     <div className="font-black text-sm uppercase">{review.name}</div>
+                     <div className="flex gap-1">
+                        {[1,2,3,4,5].map(i => <span key={i} className="text-yellow-500 text-lg leading-none font-bold">★</span>)}
+                     </div>
+                  </div>
+                  <p className="text-xs font-mono text-gray-700 italic leading-relaxed">
+                     "{review.quote}"
+                  </p>
+               </motion.div>
+            )}
+         </AnimatePresence>
+      ) : null,
+   };
+};
+
 const RadioCard = ({ show }) => {
    const { previewProps, previewPortal } = CursorPreview({ image: show.image, title: show.title });
    return (
@@ -978,6 +1155,74 @@ const RadioCard = ({ show }) => {
             <div className="text-[9px] font-mono opacity-60 mr-2">{show.time}</div>
             <Play size={14} className="opacity-0 group-hover:opacity-100 transition" />
          </a>
+      </>
+   );
+};
+
+const ClientProjectCard = ({ project, onSelect }) => {
+   const { previewProps, previewPortal } = ReviewPreview({ review: project.review });
+
+   return (
+      <>
+         {previewPortal}
+         <div {...previewProps} className="group border border-black bg-white transition flex flex-col h-full cursor-default">
+            {/* Image Container with Hover Pattern */}
+            <div className="relative bg-gray-100 border-b border-black overflow-hidden p-4 md:p-5 transition-all duration-500">
+               {/* Hover Background Pattern */}
+               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ backgroundImage: 'repeating-linear-gradient(45deg, #10b981, #10b981 10px, #059669 10px, #059669 20px)' }}></div>
+               
+               {/* Project Title */}
+               <div className="relative z-10 w-full h-6 mb-3 overflow-hidden">
+                  {/* Hover Ticker (White) */}
+                  <div className="absolute inset-0 flex items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                     <div className="flex whitespace-nowrap group-hover:animate-marquee">
+                        <h3 className="font-black uppercase text-white text-base drop-shadow-md pr-8">{project.name}</h3>
+                        <h3 className="font-black uppercase text-white text-base drop-shadow-md pr-8">{project.name}</h3>
+                        <h3 className="font-black uppercase text-white text-base drop-shadow-md pr-8">{project.name}</h3>
+                        <h3 className="font-black uppercase text-white text-base drop-shadow-md pr-8">{project.name}</h3>
+                     </div>
+                  </div>
+                  
+                  {/* Normal Title (Left, Black) */}
+                  <div className="absolute inset-0 flex items-start justify-start opacity-100 group-hover:opacity-0 transition-opacity duration-500">
+                     <h3 className="font-bold uppercase text-black text-sm max-w-full truncate">{project.name}</h3>
+                  </div>
+               </div>
+
+               {/* Project Image */}
+               <div className="relative z-20 w-full aspect-video border border-black transition-all duration-500 bg-white overflow-hidden group-hover:-translate-y-1">
+                  <img src={project.img} alt={project.name} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+               </div>
+            </div>
+
+            {/* Text Content */}
+            <div className="p-4 flex flex-col flex-1">
+               <div className="flex justify-center mb-3">
+                  <span className="text-[10px] font-mono border border-black px-2 py-0.5 whitespace-nowrap bg-gray-50 text-black uppercase">{project.category}</span>
+               </div>
+               <p className="text-xs text-center text-red-600 font-bold mb-2 uppercase flex items-center justify-center gap-1">🔒 {project.updateNote}</p>
+               <p className="text-xs text-center text-gray-600 line-clamp-2 mb-4 flex-1">{project.desc}</p>
+               
+               {/* Stack Tags */}
+               <div className="flex flex-wrap justify-center gap-2 mb-4">
+                  {project.stack?.slice(0, 3).map((tech, i) => (
+                     <span key={i} className="border border-black px-2 py-0.5 text-[10px] font-mono uppercase bg-gray-50">{tech}</span>
+                  ))}
+                  {project.stack?.length > 3 && (
+                     <span className="border border-black px-2 py-0.5 text-[10px] font-mono uppercase bg-gray-50">+{project.stack.length - 3}</span>
+                  )}
+               </div>
+
+               <div className="flex gap-2 border-t border-black pt-3 mt-auto">
+                  <button
+                     onClick={() => onSelect(project)}
+                     className="w-full py-2 border border-black text-xs font-bold uppercase flex items-center justify-center gap-2 hover:bg-black hover:text-white transition"
+                  >
+                     View Case Study <ArrowUpRight size={14} />
+                  </button>
+               </div>
+            </div>
+         </div>
       </>
    );
 };
@@ -1033,6 +1278,7 @@ const Navbar = ({ currentTime }) => (
          <a href="#about" className="hover:text-gray-500 transition">About</a>
          <a href="#skills" className="hover:text-gray-500 transition">Skills</a>
          <a href="#projects" className="hover:text-gray-500 transition">Projects</a>
+         <a href="#client-projects" className="hover:text-gray-500 transition">Clients</a>
          <a href="#app" className="hover:text-gray-500 transition">App</a>
          <a href="#media" className="hover:text-gray-500 transition">Media</a>
          <span className="text-[10px] font-mono text-gray-500 ml-2 border-l border-black/20 pl-4">{currentTime}</span>
@@ -1148,6 +1394,7 @@ const AppDetailModal = ({ isOpen, app, onClose }) => {
    const thehumantapeScreens = app?.id === "thehumantape" ? appScreens.thehumantape : [];
    const printdaoScreens = app?.id === "printdao" ? appScreens.printdao : [];
    const quarkledgerScreens = app?.id === "quarkledger" ? appScreens.quarkledger : [];
+   const smartmessScreens = app?.id === "smartmess" ? appScreens.smartmess : [];
    const [currentSlide, setCurrentSlide] = useState(0);
    const [studentCurrentSlide, setStudentCurrentSlide] = useState(0);
    const [adminCurrentSlide, setAdminCurrentSlide] = useState(0);
@@ -1158,6 +1405,7 @@ const AppDetailModal = ({ isOpen, app, onClose }) => {
    const [thehumantapeCurrentSlide, setThehumantapeCurrentSlide] = useState(0);
    const [printdaoCurrentSlide, setPrintdaoCurrentSlide] = useState(0);
    const [quarkledgerCurrentSlide, setQuarkledgerCurrentSlide] = useState(0);
+   const [smartmessCurrentSlide, setSmartmessCurrentSlide] = useState(0);
 
    const handlePrev = () => {
       if (app?.id === "smartlib") {
@@ -1730,6 +1978,46 @@ const AppDetailModal = ({ isOpen, app, onClose }) => {
                         </div>
                      )}
 
+                     {/* Screenshots - Smart Mess */}
+                     {app.id === "smartmess" && smartmessScreens.length > 0 && (
+                        <div>
+                           <h3 className="font-bold uppercase text-sm mb-3 text-black">📸 Project Screenshots</h3>
+                           <div className="space-y-3">
+                              <div className="border-2 border-black bg-gray-50 relative group overflow-hidden">
+                                 <img
+                                    src={smartmessScreens[smartmessCurrentSlide]}
+                                    alt={`Smart Mess Screen ${smartmessCurrentSlide + 1}`}
+                                    className="w-full h-auto max-h-[500px] object-contain"
+                                 />
+                              </div>
+                              <div className="flex gap-2">
+                                 <button onClick={() => setSmartmessCurrentSlide(Math.max(0, smartmessCurrentSlide - 1))} disabled={smartmessCurrentSlide === 0} className="flex-1 border border-black py-2 font-bold uppercase hover:bg-black hover:text-white transition disabled:opacity-50 text-black">Prev</button>
+                                 <span className="flex items-center justify-center px-4 border border-black font-mono text-xs text-black">{smartmessCurrentSlide + 1}/{smartmessScreens.length}</span>
+                                 <button onClick={() => setSmartmessCurrentSlide(Math.min(smartmessScreens.length - 1, smartmessCurrentSlide + 1))} disabled={smartmessCurrentSlide === smartmessScreens.length - 1} className="flex-1 border border-black py-2 font-bold uppercase hover:bg-black hover:text-white transition disabled:opacity-50 text-black">Next</button>
+                              </div>
+                              <div className="grid grid-cols-6 md:grid-cols-8 gap-1">
+                                 {smartmessScreens.map((src, idx) => {
+                                    const { previewProps, previewPortal } = CursorPreview({ image: src, title: `Screen ${idx + 1}` });
+                                    return (
+                                       <div key={idx}>
+                                          {previewPortal}
+                                          <motion.button
+                                             type="button"
+                                             {...previewProps}
+                                             onClick={() => setSmartmessCurrentSlide(idx)}
+                                             className={`aspect-square border-2 ${idx === smartmessCurrentSlide ? "border-black" : "border-gray-300"} overflow-hidden relative group cursor-pointer bg-gray-50`}
+                                             whileHover={{ scale: 1.1 }}
+                                          >
+                                             <img src={src} alt={`Thumb ${idx + 1}`} className="w-full h-full object-cover" />
+                                          </motion.button>
+                                       </div>
+                                    );
+                                 })}
+                              </div>
+                           </div>
+                        </div>
+                     )}
+
                      {/* CTA Buttons */}
                      <div className="flex gap-3 pt-4 border-t-2 border-black">
                         {app.downloadLink !== "#" && (
@@ -1823,38 +2111,46 @@ function App() {
 
    return (
       <div className="bg-[#f4f4f4] text-black font-sans min-h-screen selection:bg-black selection:text-white relative overflow-x-hidden">
-         <div className="bg-black text-white text-[10px] md:text-xs font-mono uppercase tracking-widest py-2 overflow-hidden">
-            <div className="announcement-marquee" aria-label={announcementText}>
+         <div className="bg-[#e60000] text-white border-b-[3px] border-black overflow-hidden">
+            <div className="announcement-marquee py-2.5 md:py-3.5" aria-label={announcementText}>
                <div className="announcement-marquee__track">
                   {marqueeItems.map((_, index) => (
                      <span
                         key={`announcement-${index}`}
-                        className="announcement-marquee__item !gap-0 rounded overflow-hidden mx-4"
+                        className="flex items-center gap-4 mx-6"
                      >
-                        <span className="flex items-center gap-2 bg-white/10 text-white px-4 py-1.5 border-r border-white/20">
-                           {announcementText}
-                           <span className="text-gray-500">|</span>
+                        <span className="flex items-center gap-3">
+                           <span className="bg-black text-white px-2 py-1 md:px-3 md:py-1 font-black text-[10px] md:text-sm uppercase tracking-widest">UPDATE</span>
+                           <span className="font-bold text-xs md:text-sm uppercase tracking-wider">{announcementText}</span>
                            <a
                               href={playTimeApp.downloadLink}
                               target="_blank"
                               rel="noreferrer"
-                              className="announcement-marquee__link hover:bg-white hover:text-black transition"
+                              className="border-2 border-white bg-transparent text-white px-3 py-1 font-black text-[10px] md:text-xs uppercase tracking-wider transition-all duration-200 ml-2 shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:shadow-[0px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-white hover:text-red-600 flex items-center gap-1"
                            >
-                              Download Audia Player
+                              <Download size={12}/> Download Audia
                            </a>
                         </span>
-                        <span className="flex items-center gap-2 bg-red-950 text-red-100 px-4 py-1.5">
-                           T Double H FM — Autonomous Radio Station
-                           <span className="text-red-800">|</span>
+                        
+                        <span className="text-white/40 px-4 font-black">///</span>
+                        
+                        <span className="flex items-center gap-3">
+                           <span className="bg-black text-white px-2 py-1 md:px-3 md:py-1 font-black text-[10px] md:text-sm uppercase tracking-widest flex items-center gap-1">
+                              <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"></span>
+                              ON AIR
+                           </span>
+                           <span className="font-bold text-xs md:text-sm uppercase tracking-wider">T Double H FM — Autonomous Radio Station</span>
                            <a
                               href="https://tdoublehfm.vercel.app/"
                               target="_blank"
                               rel="noreferrer"
-                              className="announcement-marquee__link !border-red-500 !bg-red-600 !text-white hover:!bg-red-500 animate-pulse px-2 py-0.5 rounded"
+                              className="border-2 border-white bg-transparent text-white px-3 py-1 font-black text-[10px] md:text-xs uppercase tracking-wider transition-all duration-200 ml-2 shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:shadow-[0px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-white hover:text-red-600 flex items-center gap-1"
                            >
-                              🔴 ONAIR
+                              <Radio size={12}/> Listen Now
                            </a>
                         </span>
+
+                        <span className="text-white/40 px-4 font-black">///</span>
                      </span>
                   ))}
                </div>
@@ -1878,10 +2174,7 @@ function App() {
          </AnimatePresence>
 
          <div className="max-w-5xl mx-auto relative">
-            <div className="absolute top-0 bottom-0 -left-6 md:-left-12 w-6 md:w-12 hidden sm:block" style={{ backgroundImage: 'repeating-linear-gradient(45deg, #d1d5db, #d1d5db 1px, transparent 1px, transparent 10px)' }}></div>
-            <div className="absolute top-0 bottom-0 -right-6 md:-right-12 w-6 md:w-12 hidden sm:block" style={{ backgroundImage: 'repeating-linear-gradient(45deg, #d1d5db, #d1d5db 1px, transparent 1px, transparent 10px)' }}></div>
-            
-            <main className="w-full px-6 pb-24 border-x border-red-500 min-h-screen bg-white">
+            <main className="w-full px-6 pb-24 min-h-screen bg-white">
 
             {/* HERO SECTION */}
             <section className="pt-20 pb-12 border-b border-black">
@@ -1901,9 +2194,10 @@ function App() {
                            Contact Me
                         </a>
                         <div className="flex gap-2 items-center px-4 border-l border-black">
-                           <a href={personalInfo.github} target="_blank" className="hover:scale-110 transition"><Github size={20} /></a>
-                           <a href={personalInfo.linkedin} target="_blank" className="hover:scale-110 transition"><Linkedin size={20} /></a>
-                           <a href={personalInfo.facebook} target="_blank" className="hover:scale-110 transition"><Facebook size={20} /></a>
+                           <a href={personalInfo.github} target="_blank" rel="noreferrer" className="hover:scale-110 transition"><Github size={20} /></a>
+                           <a href={personalInfo.linkedin} target="_blank" rel="noreferrer" className="hover:scale-110 transition"><Linkedin size={20} /></a>
+                           <a href={personalInfo.facebook} target="_blank" rel="noreferrer" className="hover:scale-110 transition"><Facebook size={20} /></a>
+                           <a href={personalInfo.youtube} target="_blank" rel="noreferrer" className="hover:scale-110 transition"><Youtube size={20} /></a>
                         </div>
                      </div>
                   </div>
@@ -1955,34 +2249,73 @@ function App() {
                <SectionTitle num="04" title="Projects" />
                <div className="grid md:grid-cols-3 gap-6">
                   {projects.map((project) => (
-                     <div key={project.id} className="group border border-black p-4 bg-white hover:bg-gray-50 transition flex flex-col h-full">
-                        <div className="aspect-video bg-gray-200 overflow-hidden border border-black mb-4">
-                           <img src={project.img} alt={project.name} className="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                     <div key={project.id} className="group border border-black bg-white transition flex flex-col h-full">
+                        {/* Image Container with Hover Pattern */}
+                        <div className="relative bg-gray-100 border-b border-black overflow-hidden p-4 md:p-5 transition-all duration-500">
+                           {/* Hover Background Pattern */}
+                           <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${project.id === "tdoublehfm" ? "bg-red-500" : ""}`} style={project.id !== "tdoublehfm" ? { backgroundImage: 'repeating-linear-gradient(45deg, #f97316, #f97316 10px, #ea580c 10px, #ea580c 20px)' } : { backgroundImage: 'repeating-linear-gradient(45deg, #ef4444, #ef4444 10px, #dc2626 10px, #dc2626 20px)' }}></div>
+                           
+                           {/* Project Title */}
+                           <div className="relative z-10 w-full h-6 mb-3 overflow-hidden">
+                              {/* Hover Ticker (White) */}
+                              <div className="absolute inset-0 flex items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                 <div className="flex whitespace-nowrap group-hover:animate-marquee">
+                                    <h3 className="font-black uppercase text-white text-base drop-shadow-md pr-8">{project.name}</h3>
+                                    <h3 className="font-black uppercase text-white text-base drop-shadow-md pr-8">{project.name}</h3>
+                                    <h3 className="font-black uppercase text-white text-base drop-shadow-md pr-8">{project.name}</h3>
+                                    <h3 className="font-black uppercase text-white text-base drop-shadow-md pr-8">{project.name}</h3>
+                                 </div>
+                              </div>
+                              
+                              {/* Normal Title (Left, Black) */}
+                              <div className="absolute inset-0 flex items-start justify-start opacity-100 group-hover:opacity-0 transition-opacity duration-500">
+                                 <h3 className="font-bold uppercase text-black text-sm max-w-full truncate">{project.name}</h3>
+                              </div>
+                           </div>
+
+                           {/* Project Image */}
+                           <div className="relative z-20 w-full aspect-video border border-black transition-all duration-500 bg-white overflow-hidden group-hover:-translate-y-1">
+                              <img src={project.img} alt={project.name} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+                           </div>
                         </div>
-                        <div className="flex justify-between items-start mb-2">
-                           <h3 className="font-bold uppercase text-lg">{project.name}</h3>
-                           <span className="text-[10px] font-mono border border-black px-1">{project.category}</span>
-                        </div>
-                        <p className="text-xs text-gray-600 line-clamp-2 mb-4 flex-1">{project.desc}</p>
-                        <div className="flex gap-2 border-t border-black pt-3">
-                           <a
-                              href={project.liveLink}
-                              target="_blank"
-                              rel="noreferrer"
-                              className={`flex-1 py-2 border text-xs font-bold uppercase flex items-center justify-center gap-2 transition ${
-                                 project.id === "tdoublehfm"
-                                 ? "border-red-600 text-red-600 hover:bg-red-600 hover:text-white"
-                                 : "border-black hover:bg-black hover:text-white"
-                              }`}
-                           >
-                              Live <Globe size={14} />
-                           </a>
-                           <button
-                              onClick={() => setSelectedProject(project)}
-                              className="flex-1 py-2 border border-black text-xs font-bold uppercase flex items-center justify-center gap-2 hover:bg-black hover:text-white transition"
-                           >
-                              View Details <ArrowUpRight size={14} />
-                           </button>
+
+                        {/* Text Content */}
+                        <div className="p-4 flex flex-col flex-1">
+                           <div className="flex justify-center mb-3">
+                              <span className="text-[10px] font-mono border border-black px-2 py-0.5 whitespace-nowrap bg-gray-50 text-black uppercase">{project.category}</span>
+                           </div>
+                           <p className="text-xs text-center text-gray-600 line-clamp-2 mb-4 flex-1">{project.desc}</p>
+                           
+                           {/* Stack Tags */}
+                           <div className="flex flex-wrap justify-center gap-2 mb-4">
+                              {project.stack?.slice(0, 3).map((tech, i) => (
+                                 <span key={i} className="border border-black px-2 py-0.5 text-[10px] font-mono uppercase bg-gray-50">{tech}</span>
+                              ))}
+                              {project.stack?.length > 3 && (
+                                 <span className="border border-black px-2 py-0.5 text-[10px] font-mono uppercase bg-gray-50">+{project.stack.length - 3}</span>
+                              )}
+                           </div>
+
+                           <div className="flex gap-2 border-t border-black pt-3 mt-auto">
+                              <a
+                                 href={project.liveLink}
+                                 target="_blank"
+                                 rel="noreferrer"
+                                 className={`flex-1 py-2 border text-xs font-bold uppercase flex items-center justify-center gap-2 transition ${
+                                    project.id === "tdoublehfm"
+                                    ? "border-red-600 text-red-600 hover:bg-red-600 hover:text-white"
+                                    : "border-black hover:bg-black hover:text-white"
+                                 }`}
+                              >
+                                 Live <Globe size={14} />
+                              </a>
+                              <button
+                                 onClick={() => setSelectedProject(project)}
+                                 className="flex-1 py-2 border border-black text-xs font-bold uppercase flex items-center justify-center gap-2 hover:bg-black hover:text-white transition"
+                              >
+                                 View Details <ArrowUpRight size={14} />
+                              </button>
+                           </div>
                         </div>
                      </div>
                   ))}
@@ -1991,6 +2324,39 @@ function App() {
                   <a href={personalInfo.github} target="_blank" className="inline-flex items-center gap-2 text-sm font-bold hover:underline">
                      <Github size={16} /> View Full Codebase on GitHub
                   </a>
+               </div>
+            </section>
+
+            {/* CLIENT PROJECTS SECTION */}
+            <section id="client-projects" className="pt-16">
+               <SectionTitle num="04.5" title="Client Projects" />
+               <div className="grid md:grid-cols-2 gap-6">
+                  {clientProjects.map((project) => (
+                     <ClientProjectCard key={project.id} project={project} onSelect={setSelectedProject} />
+                  ))}
+               </div>
+               <div className="mt-8 border-2 border-black bg-gray-50 p-6 flex flex-col md:flex-row items-center justify-between gap-4">
+                  <div className="text-left">
+                     <h4 className="font-bold text-lg uppercase mb-1">Looking for a custom solution?</h4>
+                     <p className="text-sm text-gray-700">If you want to build a similar system for your business, let's discuss your requirements.</p>
+                  </div>
+                  <div className="flex flex-col sm:flex-row gap-3 mt-4 md:mt-0">
+                     <RippleButton 
+                        href={personalInfo.fiverr} 
+                        target="_blank" 
+                        baseColorClass="bg-white border-2 border-green-600 text-green-600 px-6 py-3 text-sm font-bold uppercase transition-colors duration-300 whitespace-nowrap hover:text-white"
+                        colorClass="bg-green-600"
+                     >
+                        Hire on Fiverr
+                     </RippleButton>
+                     <RippleButton 
+                        href="#contact" 
+                        baseColorClass="bg-black border-2 border-black text-white px-6 py-3 text-sm font-bold uppercase transition-colors duration-300 whitespace-nowrap hover:text-black hover:border-black"
+                        colorClass="bg-white"
+                     >
+                        Contact Me
+                     </RippleButton>
+                  </div>
                </div>
             </section>
 
@@ -2211,7 +2577,7 @@ function App() {
             {/* CONTACT SECTION */}
             <section id="contact" className="mt-20 bg-black text-white p-12 text-center">
                <h2 className="text-4xl font-black uppercase mb-8">Ready to Collaborate?</h2>
-               <div className="flex flex-col md:flex-row justify-center gap-8 mb-12">
+               <div className="flex flex-col md:flex-row justify-center gap-8 mb-8">
                   <a href={`mailto:${personalInfo.email}`} className="flex items-center justify-center gap-2 text-xl font-bold hover:text-gray-300 transition">
                      <Mail /> {personalInfo.email}
                   </a>
@@ -2219,6 +2585,22 @@ function App() {
                      <Phone /> {personalInfo.phone}
                   </a>
                </div>
+
+               <div className="flex justify-center gap-8 mb-12">
+                  <a href={personalInfo.github} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 text-gray-400 hover:text-white transition hover:scale-110">
+                     <Github size={28} />
+                  </a>
+                  <a href={personalInfo.linkedin} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 text-gray-400 hover:text-white transition hover:scale-110">
+                     <Linkedin size={28} />
+                  </a>
+                  <a href={personalInfo.facebook} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 text-gray-400 hover:text-white transition hover:scale-110">
+                     <Facebook size={28} />
+                  </a>
+                  <a href={personalInfo.youtube} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 text-gray-400 hover:text-white transition hover:scale-110">
+                     <Youtube size={28} />
+                  </a>
+               </div>
+
                <footer className="pt-8 border-t border-white/20 text-xs font-mono text-gray-500">
                   © {new Date().getFullYear()} {personalInfo.name}. All Rights Reserved.
                </footer>
